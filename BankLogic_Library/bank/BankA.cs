@@ -362,15 +362,6 @@ namespace Lesson10
             Notify(client, type, account);
         }
 
-
-        /// <summary>
-        /// Сохранить счета в файле
-        /// </summary>
-        private void SaveAccountsInFile()
-        {
-            XMALWork.SerializeFieldsAccounts(AccountsDictionary, filePathAccounts);
-        }
-
         #endregion
 
         #region Другое
@@ -391,12 +382,6 @@ namespace Lesson10
         private void SetWorker(IWorker worker)
         {
             Worker = worker;
-        }
-
-        private Dictionary<ICapital<BankAccount>, Client> GetAccountsFromFile()
-        {
-            AccountsDictionary = XMALWork.DeserializeFieldAccounts(filePathAccounts);
-            return AccountsDictionary;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -42,7 +42,6 @@ namespace Lesson10
         /// <param name="changedData">Новые паспортные данные</param>
         void ChangePasportData(string name, string changedData);
 
-        void ShowClientData();
         void AddClient(string id, string surname, string name,
                                       string middlename, string phone,
                                       string pasportData);

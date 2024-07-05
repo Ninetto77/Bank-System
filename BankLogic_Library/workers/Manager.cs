@@ -25,6 +25,7 @@ namespace Lesson10
                     if (client.Name == name)
                     {
                         client.Surname = changedSurname;
+                        client.InvokeOnChange();
                         break;
                     }
                 }
@@ -53,6 +54,7 @@ namespace Lesson10
                     if (client.Name == name)
                     {
                         client.Name = changedName;
+                        client.InvokeOnChange();
                         break;
                     }
                 }
@@ -80,6 +82,7 @@ namespace Lesson10
                     if (client.Name == name)
                     {
                         client.Middlename = changedMiddlename;
+                        client.InvokeOnChange();
                         break;
                     }
                 }
@@ -109,6 +112,7 @@ namespace Lesson10
                     if (client.Name == name)
                     {
                         client.Phone = phone;
+                        client.InvokeOnChange();
                         break;
                     }
                 }
@@ -138,7 +142,7 @@ namespace Lesson10
                     if (client.Name == name)
                     {
                         client.PasportData = changedData;
-                        client.AddChangedData(Client.ChangedData.PasportData, Client.WorkerEnum.manager);
+                        client.InvokeOnChange();
                         break;
                     }
                 }
@@ -148,20 +152,6 @@ namespace Lesson10
                 Post.PostErrorMessage(e.Message);
             }
         }
-        public override void ShowClientData()
-        {
-            Console.WriteLine($"Surname\tName\tMiddlename\tPhone\tPasportData");
-            foreach (Client client in clients)
-            {
-                Console.WriteLine(
-                    $"{client.Surname}\t" +
-                    $"{client.Name}\t" +
-                    $"{client.Middlename}\t" +
-                    $"{client.Phone}\t" +
-                    $"{client.PasportData}");
-            }
-        }
-
         public override void SortClientsBySurname()
         {
             base.SortClientsBySurname();

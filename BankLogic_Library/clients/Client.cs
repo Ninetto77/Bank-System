@@ -90,29 +90,6 @@ namespace Lesson10
         }
         #endregion
 
-        private string dateOfChangedData { get; set; }
-
-        private List<string> changedDataList = new List<string>();
-        private List<string> typeOfChangedDataList = new List<string>();
-        private List<string> PersonChangesDataList = new List<string>();
-
-        public enum WorkerEnum
-        {
-            consultate,
-            manager,
-        }
-
-
-        public enum ChangedData
-        {
-            DepartmentID,
-            Surname,
-            Name,
-            Middlename,
-            Phone,
-            PasportData
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
@@ -183,7 +160,7 @@ namespace Lesson10
         #endregion
 
         #region
-        private void InvokeOnChange()
+        public void InvokeOnChange()
         {
             OnAnyChange?.Invoke(this, TypeOfAct.changeClientData);
         }
@@ -193,39 +170,6 @@ namespace Lesson10
         override public string ToString()
         {
             return $"{Surname,10}{Name,10}{Middlename,10}{Phone,6}{PasportData,10}";
-        }
-
-
-        public void AddChangedData(ChangedData data, WorkerEnum worker)
-        {
-            dateOfChangedData = DateTime.Now.ToShortDateString();
-            switch (data)
-            {
-                case ChangedData.Surname:
-                    changedDataList.Add("Surname");
-                    break;
-                case ChangedData.Name:
-                    changedDataList.Add("Name");
-                    break;
-                case ChangedData.Middlename:
-                    changedDataList.Add("Middlename");
-                    break;
-                case ChangedData.Phone:
-                    changedDataList.Add("Phone");
-                    break;
-                case ChangedData.PasportData:
-                    changedDataList.Add("PasportData");
-                    break;
-            }
-            typeOfChangedDataList.Add("Исправление");
-
-            InvokeOnChange();
-
-            if (worker == WorkerEnum.consultate)
-                PersonChangesDataList.Add("Консультант");
-            else
-                PersonChangesDataList.Add("Менеджер");
-
         }
 
         public int CompareTo(Client other)

@@ -39,6 +39,7 @@ namespace Lesson10
                     if (client.Name == name)
                     {
                         client.Phone = phone;
+                        client.InvokeOnChange();
                         break;
                     }
                 }
@@ -52,10 +53,6 @@ namespace Lesson10
         public override void ChangePasportData(string name, string changedData)
         {
             base.ChangePasportData(name, changedData);
-        }
-        public override void ShowClientData()
-        {
-            base.ShowClientData();
         }
 
         public override void SortClientsBySurname()

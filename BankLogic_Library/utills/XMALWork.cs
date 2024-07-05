@@ -29,26 +29,5 @@ namespace Lesson10.utills
             fstream.Close();
             return temp;
         }
-
-        public static void SerializeFieldsAccounts(Dictionary<ICapital<BankAccount>, Client> consultate, string filePath)
-        {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Dictionary<ICapital<BankAccount>, Client>));
-
-            Stream fstream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
-            xmlSerializer.Serialize(fstream, consultate);
-            fstream.Close();
-        }
-
-        public static Dictionary<ICapital<BankAccount>, Client> DeserializeFieldAccounts(string filePath)
-        {
-            Dictionary<ICapital<BankAccount>, Client> temp = new Dictionary<ICapital<BankAccount>, Client>();
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Dictionary<ICapital<BankAccount>, Client>));
-
-            Stream fstream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-            temp = xmlSerializer.Deserialize(fstream) as Dictionary<ICapital<BankAccount>, Client>;
-
-            fstream.Close();
-            return temp;
-        }
     }
 }
