@@ -1,0 +1,511 @@
+﻿<Page x:Class="Lesson10.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Lesson10"
+      mc:Ignorable="d" 
+      d:DesignHeight="480" d:DesignWidth="800"
+      Title="MainPage" 
+     Loaded="MainPage_Loaded"
+      >
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource buttonBackgroundColor}" />
+            <Setter Property="FontSize" Value="{StaticResource buttonTextFontSize}" />
+            <Setter Property="FontFamily" Value="{StaticResource buttonTextFontFamily}" />
+            <Setter Property="Margin" Value="{StaticResource buttonTextMargin}" />
+            <Setter Property="Width" Value="{StaticResource buttonTextWidth}" />
+            <Setter Property="Height" Value="{StaticResource buttonTextHeight}" />
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="{StaticResource textBoxColor}" />
+            <Setter Property="FontSize" Value="{StaticResource textBoxFontSize}" />
+            <Setter Property="Width" Value="{StaticResource textBoxWidthSize}" />
+            <Setter Property="FontFamily" Value="{StaticResource textBoxFontFamily}" />
+            <Setter Property="HorizontalAlignment" Value="{StaticResource textBoxHorAligment}" />
+            <Setter Property="VerticalAlignment" Value="{StaticResource textBoxVerAligment}" />
+            <Setter Property="Margin" Value="{StaticResource textBoxMargin}" />
+            <Setter Property="TextWrapping" Value="{StaticResource textBoxTextWrapping}" />
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource textBlockColor}" />
+            <Setter Property="HorizontalAlignment" Value="{StaticResource textBlockHorAligment}" />
+            <Setter Property="VerticalAlignment" Value="{StaticResource textBlockVerAligment}" />
+            <Setter Property="FontSize" Value="{StaticResource textBlockFontSize}" />
+            <Setter Property="FontFamily" Value="{StaticResource textBlockFontFamily}" />
+            <Setter Property="Margin" Value="{StaticResource textBlockMargin}" />
+            <Setter Property="TextAlignment" Value="{StaticResource textBlockTextAligment}" />
+            <Setter Property="TextWrapping" Value="{StaticResource textBlockTextWrapping}" />
+        </Style>
+
+        <Style TargetType="ListView">
+            <Setter Property="Background" Value="{StaticResource listViewBackground}" />
+            <Setter Property="FontSize" Value="{StaticResource listViewFontSize}" />
+            <Setter Property="FontFamily" Value="{StaticResource listViewFontFamily}" />
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="HorizontalAlignment" Value="{StaticResource comboboxHorAligment}" />
+            <Setter Property="Margin" Value="{StaticResource comboboxMargin}" />
+            <Setter Property="Width" Value="{StaticResource comboboxWidth}" />
+
+
+        </Style>
+
+
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="271*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TabControl x:Name="TabControl" Grid.RowSpan="11" Background="{StaticResource TabControlBackground}"
+                    SelectionChanged="TabControl_SelectionChanged">
+            <!--<TabControl.ContentTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>    
+                    </Grid>
+                </DataTemplate>
+            </TabControl.ContentTemplate>-->
+            <TabItem x:Name="TabItemClient"
+                     Header="Клиент"
+                     Height="22" 
+                     Margin="-2,-2,-2,0" 
+                     VerticalAlignment="Top">
+                <TabItem.Content>
+                    <StackPanel>
+                        
+                        <TextBlock 
+            x:Name="MainTxt"
+            Text="Работа с клиентами" 
+            FontSize = "20" 
+            FontWeight="Bold" 
+            Margin="0,18,0,0" 
+                            />
+
+                        <TextBlock 
+            x:Name="DepartmentTxt"
+            Text="1 - Выберете департамент"
+                            />
+
+                        <ComboBox 
+            x:Name="ItemsDepartamentComboBox"
+            ItemsSource="{Binding Departments}"
+            SelectedIndex="0" 
+                            >
+
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DepartmentName}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+
+                        <TextBlock x:Name="TaskTxt"            
+            Text="2 - Выберете клиента справа"
+                                   />
+
+                        <TextBlock x:Name="ChoiseTxt" 
+            Text="3 - Выберете, что вы хотите отредактировать"
+                                   />
+                        
+                        <ComboBox 
+            x:Name="ItemsComboBox"
+            />
+
+                        <TextBlock x:Name="EditTxt"             
+            Text="3 - Введите изменные данные"
+                                   />
+                        
+                        <TextBox 
+            x:Name="EditTxtBox"
+            />
+
+                        <Button x:Name="EditBtn" 
+                Content="Обновить" 
+                HorizontalAlignment="Left"
+                Margin="20,30,0,0"
+              />
+
+
+                        <Button x:Name="CompareBtn" 
+                Content="Сортировать"
+                HorizontalAlignment="Center"
+                Margin="0,-30,0,0"
+                                />
+
+                        <Button 
+            x:Name="AddBtn" 
+                Content="Добавить"
+                HorizontalAlignment="Right"
+                Margin="20,-30,20,0"
+                            />
+
+
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem x:Name="TabItemAccount" 
+                     Header="Счета" 
+                     >
+                <TabItem.Content>
+                    
+                    <StackPanel>
+                        
+                        <TextBlock 
+            x:Name="MainTxt1"
+            Text="Работа со счетами" 
+            FontSize = "20" 
+            FontWeight="Bold"
+            Margin="0,18,0,0"  
+            />
+
+                        <TextBlock 
+            x:Name="DepartmentTxt1"
+            Text="1 - Выберете департамент"
+                            />
+
+                        <ComboBox 
+            Grid.Row="3" 
+            x:Name="ItemsDepartamentComboBox1"
+             SelectedIndex="0" 
+             >
+
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DepartmentName}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+
+
+                        <TextBlock x:Name="ClientTxt1"
+            Text="2 - Выберете клиента справа"
+                                   />
+
+                        <TextBlock x:Name="AccountTxt1" 
+            Text="3 - Выберете счет справа, с которого вы хотите снять деньги" 
+                                   />
+
+                        <TextBlock x:Name="TaskTxt1"
+                         Text="4 - Выберете счет, на который вы хотите перевести деньги" 
+                                   />
+                        
+                        <ComboBox 
+            x:Name="ItemsAccountComboBox1"
+                 >
+
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"></TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+
+                        </ComboBox>
+
+                        <TextBlock x:Name="RubleTxt1" 
+            Text="5 - Напишите, сколько средств вы хотите перевести" 
+                                   />
+
+                        <TextBox 
+            x:Name="RubleTxtBox1"
+            />
+
+
+                       
+
+                        <Button x:Name="DeleteBtn1" 
+                Content="Удалить счет"
+                HorizontalAlignment="Left" 
+                Margin="30,18,0,0"
+                />
+
+
+                        <Button 
+            x:Name="TransferBtn1" 
+            Content="Перевести"
+            HorizontalAlignment="Right"
+            Margin="0,-30,30,0"
+            />
+
+
+                        <Button x:Name="AddMoneyBtn1"             
+                Width="122"
+                Content="Положить деньги" 
+                HorizontalAlignment="Left" 
+                Margin="30,18,0,0" 
+                />
+
+                        <Button x:Name="SpendMoneyBtn1"
+                Content="Снять деньги"
+                HorizontalAlignment="Right" 
+                Margin="0,-30,30,0"
+                />
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem x:Name="TabItemCapital" 
+                     Header="Депозит">
+                <TabItem.Content>
+                    <StackPanel>
+                        <TextBlock 
+            x:Name="MainTxt2"
+            Text="Работа с депозитом" 
+            FontSize = "20" 
+            FontWeight="Bold" 
+                            />
+
+                        <TextBlock 
+            x:Name="DepartmentTxt2"
+            Text="1 - Выберете департамент"
+            />
+
+                        <ComboBox 
+            Grid.Row="3" 
+            x:Name="ItemsDepartamentComboBox2"
+             SelectedIndex="0" 
+            >
+
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DepartmentName}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+
+
+                        <TextBlock x:Name="ClientTxt2"
+            Text="2 - Выберете клиента справа" 
+                                   />
+
+                        <TextBlock x:Name="RubleTxt2" 
+            Text="3 - Напишите, сколько средств вы хотите положить при создании счета" 
+                                   />
+
+                        <TextBox 
+            x:Name="RubleTxtBox2"
+            />
+
+
+                        <Button x:Name="AddWithCapitalBtn2" 
+                Content="Добавить счет с капитализацией" 
+                Width ="{StaticResource buttonTextLongWidth}"
+                />
+
+                        <Button x:Name="AddWithoutCapitalBtn2" 
+                Content="Добавить счет без капитализацией"
+                Width="{StaticResource buttonTextLongWidth}"
+                />
+
+
+                        <Button x:Name="AddMoneyForYearBtn2" 
+                Content="Получить средства за год"
+                Width="{StaticResource buttonTextLongWidth}"
+                />
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+
+
+            <TabItem x:Name="TabItemTransation" 
+                     Header="Переводы">
+                <TabItem.Content>
+                    <StackPanel>
+                        <TextBlock 
+            x:Name="MainTxt3"
+            Text="Перевод между счетами клиентов" 
+            FontSize = "20" 
+            FontWeight="Bold" 
+                            />
+
+                        <TextBlock 
+            x:Name="DepartmentTxt3"
+            Text="1 - Выберете департамент"
+                            />
+
+                        <ComboBox 
+            x:Name="ItemsDepartamentComboBox3"
+             SelectedIndex="0" 
+             >
+
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DepartmentName}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+
+
+                        <TextBlock x:Name="ClientTxt3"
+            Text="2 - Выберете клиента и его счет справа" 
+                                   />
+
+                        <TextBlock x:Name="DepartAndClientTxt3" 
+            Text="3 - Выберете департамент второго клиента, самого клиента и счет, с которого вы хотите снять средства" 
+                                   />
+
+                        <ComboBox 
+            x:Name="ItemsDepartament2ComboBox3"
+             SelectedIndex="0" 
+            >
+
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DepartmentName}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <ComboBox 
+            x:Name="ItemsClientComboBox3"
+             SelectedIndex="0" 
+            >
+
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Surname}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <ComboBox 
+            x:Name="ItemsAccountComboBox3"
+            SelectedIndex="0" 
+             >
+
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+
+                        <TextBlock x:Name="RubleTxt3" 
+            Text="3 - Напишите, сколько денег вы хотите перевести" 
+                                   />
+                        
+                        
+                        <TextBox 
+            x:Name="RubleTxtBox3"
+            />
+
+
+                        <Button 
+                            x:Name="TransferBetweenClientsCapitalBtn3" 
+                Content="Перевести" 
+                Width ="{StaticResource buttonTextLongWidth}"
+                Margin="{StaticResource textBlockMargin}"
+                />
+
+                       
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem x:Name="TabItemLog" 
+                     Header="Журнал изменений">
+                <TabItem.Content>
+                    
+                    
+                    <StackPanel>
+                        
+                        <TextBlock 
+            x:Name="MainTxt4"
+            Text="Журнал изменений" 
+            Margin="0,18,0,0"
+            FontSize = "20" 
+            VerticalAlignment="Center"
+            FontWeight="Bold" 
+                            />
+
+                        <ListView x:Name ="IvActivityLog" Margin="8,10,10,10" 
+                                  Grid.Column="1" Grid.RowSpan="11"
+                                  Height="322">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding ClientSurname}"/>
+                                    <GridViewColumn Header="AccountName" DisplayMemberBinding="{Binding AccountName, TargetNullValue=-}"/>
+                                    <GridViewColumn Header="TypeOfChange" DisplayMemberBinding="{Binding ActString}"/>
+                                    <GridViewColumn Header="TimeOfActivity" DisplayMemberBinding="{Binding TimeOfAction}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+
+        </TabControl>
+
+
+
+        <!--<Frame x:Name="AddFrame" Height="450" Width="800" MinHeight="515" MinWidth="800" Grid.ColumnSpan="2" Margin="0,-18,0,-18" Grid.RowSpan="10" Navigated="AddFrame_Navigated" />-->
+        <!--SelectedItem="{Binding SelectedDepartment}"-->
+
+        <ListView x:Name ="IvWorkers"
+                  ItemsSource="{Binding Clients}"
+                  Margin="8,10,10,10"
+                  Grid.Column="1"
+                  Grid.RowSpan="11" 
+                  >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding Surname}"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Middlename" DisplayMemberBinding="{Binding Middlename}"/>
+                    <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}"/>
+                    <GridViewColumn Header="PasportData" DisplayMemberBinding="{Binding PasportData}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView x:Name ="IvWorkers1" Margin="8,10,205,30" Grid.Column="1" Grid.RowSpan="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding Surname}"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView x:Name ="IvAccounts1" Margin="200,10,10,30"
+                  Grid.Column="1" Grid.RowSpan="10" 
+                  DataContext="Presenter.Accounts">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="AccountName" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Score" DisplayMemberBinding="{Binding AccountRuble.Value}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Page>
