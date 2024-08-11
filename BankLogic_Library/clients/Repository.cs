@@ -3,6 +3,7 @@ using Lesson10.utills;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace Lesson10
 {
@@ -10,7 +11,7 @@ namespace Lesson10
     {
         static Random r;
         public ObservableCollection<Department> Departments { get; set; }
-        public IEnumerable<Client> Clients { get; set; }
+        public ObservableCollection<Client> Clients { get; set; }
 
         ClientContex db;
 
@@ -21,60 +22,35 @@ namespace Lesson10
             r = new Random();
         }
 
-        public Repository(int countOfDepartments, int countOfClients) 
+        public Repository(int countOfDepartments, int countOfClients)
         {
             Departments = new ObservableCollection<Department>();
             Clients = new ObservableCollection<Client>();
-            db = new ClientContex();
 
-
-            for (int i =0; i < countOfDepartments; i++)
+            for (int i = 0; i < countOfDepartments; i++)
             {
-                Departments.Add(new Department($"Department_{i+1}", i+1));
+                Departments.Add(new Department($"Department_{i + 1}", i + 1));
             }
 
             //CreateClients(countOfClients);
-            GetFromFile();
-        }
+		}
 
         public void CreateClients(int countOfClients)
         {
-            for (int i = 0; i < countOfClients; i++)
+            for (int i = 0; i < 1000000; i++)
             {
-                db.Clients.Add(new Client(
+               
+                Clients.Add(new Client(
                     $"{(r.Next(Departments.Count + 1))}",
                     $"Surname_{i + 1}",
                     $"Name_{i + 1}",
                     $"MiddleName_{i + 1}",
                     "79999999999",
-                    $"{i + 1}{i + 1}{i + 1}{i + 1}{i + 1}{i + 1}{i + 1}{i + 1}{i + 1}{i + 1}"
+                    $"6666664444"
                     ));
-
-                Clients = db.Clients;
-
-                //foreach (var client in db.Clients)
-                //{
-                //    Clients.Add(client);
-                //}
-                //Clients.Add(new Client(
-                //    $"{(r.Next(Departments.Count + 1))}",
-                //    $"Surname_{i + 1}",
-                //    $"Name_{i + 1}",
-                //    $"MiddleName_{i + 1}",
-                //    "79999999999",
-                //    $"{i + 1}{i + 1}{i + 1}{i + 1}{i + 1}{i + 1}{i + 1}{i + 1}{i + 1}{i + 1}"
-                //    ));
             }
 
-
-            db.SaveChanges();
-            //SaveInFile();
-        }
-
-        public void GetFromDB()
-        {
-            var t = db.Clients;
-            Clients = t;
+            SaveInFile();
         }
 
         public void SaveInFile()
@@ -82,10 +58,17 @@ namespace Lesson10
             XMALWork.SerializeFields(Clients, filePath);
 
         }
-        public void GetFromFile()
+        public async Task GetFromFileAsync()
         {
-            Clients = XMALWork.DeserializeField<Client>(filePath);
-        }
+            var task = XMALWork.DeserializeField<Client>(filePath);
+            await task;
 
+            Clients = task.Result as ObservableCollection<Client>;
+
+            if (Clients == null)
+            {
+                Post.PostMessage("Нет клиентов");
+            }
+        }
     }
 }

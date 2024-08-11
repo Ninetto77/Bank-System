@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using BankAccount_Library.account;
+using System.Threading.Tasks;
 
 namespace Lesson10
 {
@@ -23,19 +24,29 @@ namespace Lesson10
 
         private readonly int countOfDepartmentsDefault = 3;
         private readonly int countOfClientsDefault = 15;
-        #endregion
 
-        #region Конструкторы
-        public Worker(int countOfDepartments, int countOfClients)
+		private int countOfDepartments;
+		private int countOfClients;
+
+		#endregion
+
+		#region Конструкторы
+		public Worker(int countOfDepartments, int countOfClients)
         {
-            CreateRepository(countOfDepartments, countOfClients);
+            this.countOfDepartments= countOfDepartments;
+            this.countOfClients= countOfClients;
+
+			//CreateRepository(countOfDepartments, countOfClients);
         }
         public Worker()
         {
-            countOfDepartmentsDefault = 3;
-            countOfClientsDefault = 15;
+			this.countOfDepartmentsDefault = 3;
+			this.countOfClientsDefault = 15;
 
-            CreateRepository(countOfDepartmentsDefault, countOfClientsDefault);
+            this.countOfDepartments = countOfDepartmentsDefault;
+			this.countOfClients = countOfClientsDefault;
+
+			//CreateRepository(countOfDepartmentsDefault, countOfClientsDefault);
         }
 
         #endregion
@@ -88,19 +99,24 @@ namespace Lesson10
             departmentsName = temp;
         }
 
+        public async Task UploadClientsFromFileAsync()
+        {
+            await CreateRepositoryAsync(countOfDepartments, countOfClients);
+        }
+
         /// <summary>
         /// Create repository
         /// </summary>
         /// <param name="countOfDepartments">count of departaments</param>
         /// <param name="countOfClients">common count of clients</param>
-        private void CreateRepository(int countOfDepartments, int countOfClients)
+        private async Task CreateRepositoryAsync(int countOfDepartments, int countOfClients)
         {
             Repository repository = new Repository(countOfDepartments, countOfClients);
+            await repository.GetFromFileAsync();
+
             clients = repository.Clients as ObservableCollection<Client>;
-            //SerializeFields(clients);
 
             InitDepartmentItems(repository);
-            //InitItems();
             DescribeOnClientChangeEvent();
         }
 
@@ -184,6 +200,7 @@ namespace Lesson10
             }
         }
 
+
         #region ISubject
         public void Attach(IObserver observer)
         {
@@ -202,8 +219,9 @@ namespace Lesson10
                 obs.Update(client, type, account);
             }
         }
-        #endregion
 
-        #endregion
-    }
+		#endregion
+
+		#endregion
+	}
 }

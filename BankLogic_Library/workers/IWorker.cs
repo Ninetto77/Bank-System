@@ -1,6 +1,7 @@
 ﻿using Lesson10.activityLog;
 using Lesson10.observer;
 using System;
+using System.Threading.Tasks;
 
 namespace Lesson10
 {
@@ -10,6 +11,12 @@ namespace Lesson10
         /// Событие изменения данных о клиенте
         /// </summary>
         event Action<Client, TypeOfAct> OnChangeClient;
+
+        /// <summary>
+        /// Дожидается загрузки клиетов из файла 
+        /// </summary>
+        /// <returns></returns>
+        Task UploadClientsFromFileAsync();
 
         /// <summary>
         /// Изменение  фамилии
@@ -41,7 +48,15 @@ namespace Lesson10
         /// <param name="name">Имя клиента, у которого изменить данные</param>
         /// <param name="changedData">Новые паспортные данные</param>
         void ChangePasportData(string name, string changedData);
-
+        /// <summary>
+        /// Добавить клиента
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="surname"></param>
+        /// <param name="name"></param>
+        /// <param name="middlename"></param>
+        /// <param name="phone"></param>
+        /// <param name="pasportData"></param>
         void AddClient(string id, string surname, string name,
                                       string middlename, string phone,
                                       string pasportData);

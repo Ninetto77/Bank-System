@@ -82,6 +82,11 @@ namespace Lesson10
         /// <param name="clients"></param>
         public void CreateAccountsForClients(ObservableCollection<Client> clients)
         {
+            if (clients == null)
+            {
+                Post.PostErrorMessage("Нет клиентов в банке");
+                return;
+            }
             foreach (var client in clients)
             {
                 CreateAccountForClient(client, CapitalEnum.accountWithCapitalization);

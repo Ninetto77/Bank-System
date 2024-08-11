@@ -1,24 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
-using BankAccount_Library.account;
-using BankAccount_Library.deposit;
 
 namespace Lesson10.utills
 {
     internal class XMALWork
     {
-        public static void SerializeFields<T>(IEnumerable<T> consultate, string filePath)
+        public static void SerializeFields<T>(ObservableCollection<T> consultate, string filePath)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(IEnumerable<T>));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<T>));
 
             Stream fstream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
             xmlSerializer.Serialize(fstream, consultate);
             fstream.Close();
         }
 
-        public static IEnumerable<T> DeserializeField<T>(string filePath)
+        public static async Task<IEnumerable<T>> DeserializeField<T>(string filePath)
         {
             IEnumerable<T> temp = new ObservableCollection<T>();
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<T>));
@@ -27,7 +27,11 @@ namespace Lesson10.utills
             temp = xmlSerializer.Deserialize(fstream) as IEnumerable<T>;
 
             fstream.Close();
-            return temp;
+
+			//Thread.Sleep(2000);
+
+
+			return temp;
         }
     }
 }

@@ -6,6 +6,9 @@ using System.Windows;
 using System.Windows.Controls;
 using BankAccount_Library.account;
 using BankAccount_Library.deposit;
+using System.Threading.Tasks;
+using System.Threading;
+using Mysqlx.Crud;
 
 namespace Lesson10
 {
@@ -58,9 +61,9 @@ namespace Lesson10
         #endregion
 
         #region Конструкторы
-        public MainPage()
+        public MainPage(Worker _worker)
         {
-            FindOutWorker();
+            worker = _worker;
 
             InitializeComponent();
             InitializePresenter();
@@ -68,29 +71,7 @@ namespace Lesson10
         }
         #endregion
 
-        #region Инициализация
-        /// <summary>
-        /// начальное окно, спрашивающее, является ли пользователь менеджером или консультантом
-        /// </summary>
-        /// <returns></returns>
-        private Worker FindOutWorker()
-        {
-            MessageBoxResult result = MessageBox.Show(
-            "Вы менеджер?",
-             "Консультант или менеджер",
-             MessageBoxButton.YesNo,
-             MessageBoxImage.Information
-        );
-
-            PlayQuestionSound();
-
-            if (result == MessageBoxResult.Yes)
-                worker = new Manager();
-            else
-                worker = new Consultate();
-            return worker;
-        }
-
+		#region Инициализация		
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             MainWindow SetWindow = Window.GetWindow(this) as MainWindow;

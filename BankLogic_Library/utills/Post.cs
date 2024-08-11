@@ -6,14 +6,14 @@ namespace Lesson10
 {
     internal class Post
     {
-        public static void PostMessage(string msg)
+		public static void PostMessage(string msg)
         {
             MessageBox.Show(msg);
         }
 
         public static void PostErrorMessage(string message)
         {
-            MessageBox.Show(message,
+		 MessageBox.Show(message,
          "Ошибка",
          MessageBoxButton.OK,
          MessageBoxImage.Error);
@@ -21,5 +21,5 @@ namespace Lesson10
          SystemSounds.Exclamation.Play();
 
         }
-    }
+	}
 }

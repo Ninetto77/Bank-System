@@ -12,9 +12,13 @@ namespace Lesson10
         AddPage addPage;
         MainPage mainPage;
         Presenter p;
-        public MainWindow()
+
+        Worker worker;
+        public MainWindow(Worker _worker)
         {
-            InitializeComponent();
+			worker = _worker;
+
+			InitializeComponent();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -24,7 +28,7 @@ namespace Lesson10
 
         private void Initialize()
         {
-            mainPage = new MainPage();
+            mainPage = new MainPage(worker);
             addPage = new AddPage();
             ChangeFrame("MainPage");
         }
