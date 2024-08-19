@@ -15,6 +15,7 @@ namespace Lesson10
 		{
 			FindOutWorker();
 			InitializeComponent();
+			InitButtons();
 		}
 		#region Инициализация
 		/// <summary>
@@ -37,46 +38,68 @@ namespace Lesson10
 
 			return worker;
 		}
-		#endregion
 
 		/// <summary>
-		/// Кнопка загрузки клиентов
+		/// Инициализация кнопок
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void LoadClientsBtn_Click(object sender, RoutedEventArgs e)
+		private void InitButtons()
 		{
-			Task.Run(async () => await LoadClientsAsync());
+			LoadClientsXMLBtn.Click += (s, e) => Task.Run(async () => await LoadClientsAsync("XML")); ;
+			LoadClientsDBBtn.Click += (s, e) => Task.Run(async () => await LoadClientsAsync("DB")); ;
 		}
+		#endregion
+
 		/// <summary>
 		/// Загрузка клиентов асинхронно
 		/// </summary>
 		/// <returns></returns>
-		private async Task LoadClientsAsync()
+		private async Task LoadClientsAsync(string place)
 		{
 			this.Dispatcher.Invoke(() =>
 			{
-				LoadClientsBtn.IsEnabled = false;
+				LoadClientsDBBtn.IsEnabled = false;
+				LoadClientsXMLBtn.IsEnabled = false;
 				ClientProgressBar.Value = 0;
 				TextProgressBar.Text = "Начинаем загрузку...";
 			});
 
-			var task = worker.UploadClientsFromFileAsync();
-			await task;
+			await UploadClientsAsync(place);
 
 			this.Dispatcher.Invoke(() =>
 			{
-				LoadClientsBtn.IsEnabled = false;
+				LoadClientsDBBtn.IsEnabled = false;
+				LoadClientsXMLBtn.IsEnabled = false;
 				ContinueBtn.Visibility = Visibility;
 				ClientProgressBar.Value = 100;
 				TextProgressBar.Text = "Готово!";
 			});
 		}
+
 		/// <summary>
-/// Кнопка продолжения
-/// </summary>
-/// <param name="sender"></param>
-/// <param name="e"></param>
+		/// Начать загрузку клиентов 
+		/// </summary>
+		/// <param name="place"></param>
+		/// <returns></returns>
+		private async Task UploadClientsAsync(string place)
+		{
+			switch(place)
+			{
+				case "XML":
+					var task = worker.UploadClientsFromXMLAsync();
+					await task;
+					break;
+				case "DB":
+					var task1 = worker.UploadClientsFromDBAsync();
+					await task1;
+					break;
+			}
+		}
+
+		/// <summary>
+		/// Кнопка продолжения
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void ContinueBtn_Click(object sender, RoutedEventArgs e)
 		{
 			MainWindow main = new MainWindow(worker);
@@ -84,5 +107,7 @@ namespace Lesson10
 
 			this.Close();
 		}
+
+
 	}
 }

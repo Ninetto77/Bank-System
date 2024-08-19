@@ -58,7 +58,8 @@
     <Compile Include="bank\BankA.cs" />
     <Compile Include="clients\Client.cs" />
     <Compile Include="clients\Department.cs" />
-    <Compile Include="clients\Repository.cs" />
+    <Compile Include="repository\DBRepository.cs" />
+    <Compile Include="repository\Repository.cs" />
     <Compile Include="DB\ClientContex.cs" />
     <Compile Include="MVP\IModel.cs" />
     <Compile Include="MVP\IView.cs" />
@@ -67,6 +68,8 @@
     <Compile Include="observer\IObserver.cs" />
     <Compile Include="observer\ISubject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="repository\IRepository.cs" />
+    <Compile Include="repository\XMLRepository.cs" />
     <Compile Include="transaction\ITransaction.cs" />
     <Compile Include="transaction\TransactionBank.cs" />
     <Compile Include="utills\Post.cs" />

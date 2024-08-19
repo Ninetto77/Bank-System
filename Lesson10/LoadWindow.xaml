@@ -39,38 +39,51 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <TextBlock 
                    Text="Загрузка клиентов" 
                    FontSize="20"
-                    FontWeight="Bold"
+                    FontWeight="Bold" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="277,48,0,0" VerticalAlignment="Top"
                    />
         <ProgressBar 
                     x:Name="ClientProgressBar"
-                    HorizontalAlignment="Center" 
+                    HorizontalAlignment="Left" 
                     Height="34" 
-                    Margin="0,10,0,0" 
+                    Margin="60,10,0,0" 
                     VerticalAlignment="Top" Width="600"
-                    Grid.Row="1"/>
+                    Grid.Row="1" Grid.ColumnSpan="2"/>
 
         <TextBlock
                    x:Name="TextProgressBar"
                    Text="Начнем?" 
-                   Margin="0,50,0,0"
+                   Margin="321,50,0,0"
                    Grid.Row="1"
                    FontSize="20"
-                   VerticalAlignment="Top" 
+                   VerticalAlignment="Top"
+                   Grid.ColumnSpan="2" 
+                   HorizontalAlignment="Left" 
                    />
 
         <Button
-                x:Name="LoadClientsBtn"
-                Content="Загрузить данные" 
+                x:Name="LoadClientsXMLBtn"
+                Content="Загрузить данные XML" 
                 Width="150"
                 Grid.Row="1"
-                Margin="30"
+                Grid.Column="0"
+                Margin="0,100,0,0"
+                VerticalAlignment="Top"
+            />
+
+        <Button
+                x:Name="LoadClientsDBBtn"
+                Content="Загрузить данные БД" 
+                Width="150"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,0,0,40"
                 VerticalAlignment="Bottom"
-                Click="LoadClientsBtn_Click"
             />
 
         <Button
@@ -78,12 +91,12 @@
                 Content="Продолжить работу" 
                 Width="150"
                 Grid.Row="1"
-                Margin="30"
+                Margin="285,0,285,30"
                 VerticalAlignment="Bottom"
                 Click="ContinueBtn_Click"
-                Visibility="Hidden"
+                Visibility="Hidden" Grid.ColumnSpan="2"
             />
-        
+
     </Grid>
 
 

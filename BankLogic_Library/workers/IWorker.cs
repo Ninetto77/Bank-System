@@ -16,7 +16,7 @@ namespace Lesson10
         /// Дожидается загрузки клиетов из файла 
         /// </summary>
         /// <returns></returns>
-        Task UploadClientsFromFileAsync();
+        Task UploadClientsFromXMLAsync();
 
         /// <summary>
         /// Изменение  фамилии

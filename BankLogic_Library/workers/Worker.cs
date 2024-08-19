@@ -7,6 +7,8 @@ using System.Linq;
 using System.Windows;
 using BankAccount_Library.account;
 using System.Threading.Tasks;
+using Lesson10.repository;
+using BankLogic_Library.repository;
 
 namespace Lesson10
 {
@@ -91,30 +93,40 @@ namespace Lesson10
         /// <summary>
         /// init depatrtment names items
         /// </summary>
-        public void InitDepartmentItems(Repository repository)
+        public void InitDepartmentItems(IRepository repository)
         {
             departmentsName = new ObservableCollection<Department>();
-            ObservableCollection<Department> temp = repository.Departments;
+            ObservableCollection<Department> temp = (repository as Repository).Departments;
            
             departmentsName = temp;
         }
 
-        public async Task UploadClientsFromFileAsync()
+        public async Task UploadClientsFromXMLAsync()
         {
-            await CreateRepositoryAsync(countOfDepartments, countOfClients);
+            await CreateRepositoryAsync(countOfDepartments, countOfClients, "XML");
         }
 
-        /// <summary>
-        /// Create repository
-        /// </summary>
-        /// <param name="countOfDepartments">count of departaments</param>
-        /// <param name="countOfClients">common count of clients</param>
-        private async Task CreateRepositoryAsync(int countOfDepartments, int countOfClients)
-        {
-            Repository repository = new Repository(countOfDepartments, countOfClients);
-            await repository.GetFromFileAsync();
+		public async Task UploadClientsFromDBAsync()
+		{
+			await CreateRepositoryAsync(countOfDepartments, countOfClients, "DB");
+		}
 
-            clients = repository.Clients as ObservableCollection<Client>;
+		/// <summary>
+		/// Create repository
+		/// </summary>
+		/// <param name="countOfDepartments">count of departaments</param>
+		/// <param name="countOfClients">common count of clients</param>
+		private async Task CreateRepositoryAsync(int countOfDepartments, int countOfClients, string place)
+        {
+            Repository repository = null;
+            if (place == "XML")
+                repository = new XMLRepository(countOfDepartments, countOfClients);
+			if (place == "DB")
+				repository = new DBRepository(countOfDepartments, countOfClients);
+
+			await repository.GetClientContextAsync();
+
+            clients = repository.Clients;
 
             InitDepartmentItems(repository);
             DescribeOnClientChangeEvent();
