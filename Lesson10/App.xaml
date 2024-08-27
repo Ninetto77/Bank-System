@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Lesson10" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             StartupUri="LoadWindow.xaml">
+             StartupUri="AuthorizationWindow.xaml">
 
     <Application.Resources>
         <SolidColorBrush x:Key="textBlockColor" Color ="Black"/>

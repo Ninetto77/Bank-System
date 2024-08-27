@@ -7,6 +7,9 @@ using BankAccount_Library.account;
 using BankAccount_Library.deposit;
 using BankAccount_Library.currency;
 using System.Linq.Expressions;
+using BankLogic_Library.MVP;
+using BankLogic_Library.DB;
+using BankLogic_Library.workers;
 
 namespace Lesson10.MVP
 {
@@ -22,6 +25,7 @@ namespace Lesson10.MVP
 
         private BankA bank;
         private IView view;
+        private IViewAuthWindow viewAuth;
 
         #region Конструктор
         public Presenter(BankA bank, Worker worker, IView view)
@@ -41,10 +45,15 @@ namespace Lesson10.MVP
 
             Init();
         }
-        #endregion
 
-        #region Инициализация
-        private void Init()
+		public Presenter(IViewAuthWindow view)
+		{
+			this.viewAuth = view;
+		}
+		#endregion
+
+		#region Инициализация
+		private void Init()
         {
             CreateJournal();
             CreateCollections();
@@ -526,15 +535,31 @@ namespace Lesson10.MVP
 
         #endregion
 
-        #region 
-        #endregion
+        #region Авторизация клиента
+        public void EnterToSystem()
+        {
+            WorkerType type;
+            type = viewAuth.isManager == true ? type = WorkerType.manager : type = WorkerType.consultant;
 
-        #region Работа с клиентом
-        /// <summary>
-        /// окно на потверждение изменения клиента
-        /// </summary>
-        /// <param name="client"></param>
-        private void AskForEditClient(Client client)
+			WorkerAuthorization auth = new WorkerAuthorization(viewAuth.Login, viewAuth.Password, type);
+            auth.EnterToSystem();
+        }
+		public void RegistrateInSystem()
+		{
+			WorkerType type;
+			type = viewAuth.isManager == true ? type = WorkerType.manager : type = WorkerType.consultant;
+
+			WorkerAuthorization auth = new WorkerAuthorization(viewAuth.Login, viewAuth.Password, type);
+			auth.RegisterInSystem();
+		}
+		#endregion
+
+		#region Работа с клиентом
+		/// <summary>
+		/// окно на потверждение изменения клиента
+		/// </summary>
+		/// <param name="client"></param>
+		private void AskForEditClient(Client client)
         {
             MessageBoxResult rezult = MessageBox.Show($"Вы уверены, что хотите отредактировать у" +
                 $" {client.Name} изменить {view.SelectedItem_CB} на {view.ChangedClientData_TB}?",

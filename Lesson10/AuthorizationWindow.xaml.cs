@@ -1,27 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Lesson10.MVP;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using BankLogic_Library.MVP;
 
 namespace Lesson10
 {
 	/// <summary>
 	/// Логика взаимодействия для AuthorizationWindow.xaml
 	/// </summary>
-	public partial class AuthorizationWindow : Window
+	public partial class AuthorizationWindow : Window, IViewAuthWindow
 	{
+		public string Login { get => LoginTextBox.Text; }
+		public string Password { get => PasswordTextBox.Text; }
+		public bool? isManager { get => WorkerCheckBox.IsChecked; }
+
+
+		private Presenter p;
 		public AuthorizationWindow()
 		{
+			p = new Presenter(this);
 			InitializeComponent();
+			InitButtons();
 		}
+
+
+		private void InitButtons()
+		{
+			EnterBtn.Click += (s, e) => p.EnterToSystem();
+			RegisterBtn.Click += (s, e) => p.RegistrateInSystem();
+		}
+
 	}
 }

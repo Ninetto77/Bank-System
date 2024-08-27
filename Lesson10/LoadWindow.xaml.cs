@@ -45,7 +45,7 @@ namespace Lesson10
 		private void InitButtons()
 		{
 			LoadClientsXMLBtn.Click += (s, e) => Task.Run(async () => await LoadClientsAsync("XML")); ;
-			LoadClientsDBBtn.Click += (s, e) => Task.Run(async () => await LoadClientsAsync("DB")); ;
+			//LoadClientsDBBtn.Click += (s, e) => Task.Run(async () => await LoadClientsAsync("DB")); ;
 		}
 		#endregion
 
@@ -57,7 +57,7 @@ namespace Lesson10
 		{
 			this.Dispatcher.Invoke(() =>
 			{
-				LoadClientsDBBtn.IsEnabled = false;
+				//LoadClientsDBBtn.IsEnabled = false;
 				LoadClientsXMLBtn.IsEnabled = false;
 				ClientProgressBar.Value = 0;
 				TextProgressBar.Text = "Начинаем загрузку...";
@@ -67,7 +67,7 @@ namespace Lesson10
 
 			this.Dispatcher.Invoke(() =>
 			{
-				LoadClientsDBBtn.IsEnabled = false;
+				//LoadClientsDBBtn.IsEnabled = false;
 				LoadClientsXMLBtn.IsEnabled = false;
 				ContinueBtn.Visibility = Visibility;
 				ClientProgressBar.Value = 100;

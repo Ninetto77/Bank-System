@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,9 +56,14 @@
   <ItemGroup>
     <Compile Include="activityLog\ActivityJournal.cs" />
     <Compile Include="activityLog\ActivityLog.cs" />
+    <Compile Include="Authorization\IAthorization.cs" />
     <Compile Include="bank\BankA.cs" />
     <Compile Include="clients\Client.cs" />
     <Compile Include="clients\Department.cs" />
+    <Compile Include="Authorization\User.cs" />
+    <Compile Include="DB\UsersContext.cs" />
+    <Compile Include="DB\WorkerAuthorization.cs" />
+    <Compile Include="MVP\IViewAuthWindow.cs" />
     <Compile Include="repository\DBRepository.cs" />
     <Compile Include="repository\Repository.cs" />
     <Compile Include="DB\ClientContex.cs" />
@@ -78,6 +84,7 @@
     <Compile Include="workers\IWorker.cs" />
     <Compile Include="workers\Manager.cs" />
     <Compile Include="workers\Worker.cs" />
+    <Compile Include="workers\WorkerType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BankAccount_Library\BankAccount_Library.csproj">
