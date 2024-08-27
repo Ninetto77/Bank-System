@@ -8,7 +8,7 @@ using BankAccount_Library.account;
 using BankAccount_Library.deposit;
 using System.Threading.Tasks;
 using System.Threading;
-using Mysqlx.Crud;
+//using Mysqlx.Crud;
 
 namespace Lesson10
 {

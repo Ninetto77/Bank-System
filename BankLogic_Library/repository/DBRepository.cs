@@ -1,12 +1,5 @@
 ﻿using Lesson10;
 using Lesson10.repository;
-using Lesson10.utills;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BankLogic_Library.repository
@@ -28,36 +21,38 @@ namespace BankLogic_Library.repository
 
 		public override async Task GetClientContextAsync()
 		{
-			SqlConnectionStringBuilder strCon = new SqlConnectionStringBuilder()
-			{
-				DataSource = @"(localdb)\MSS123QLLocalDB",
-				InitialCatalog = "MSSQLMyClientsDb",
-				IntegratedSecurity = true,
-				// UserID = "Admin", Password = "qwerty",
-				Pooling = false
-			};
+			//SqlConnectionStringBuilder strCon = new SqlConnectionStringBuilder()
+			//{
+			//	DataSource = @"(localdb)\MSS123QLLocalDB",
+			//	InitialCatalog = "MSSQLMyUsersDb",
+			//	IntegratedSecurity = true,
+			//	// UserID = "Admin", Password = "qwerty",
+			//	Pooling = false
+			//};
 
-			SqlConnection connection = new SqlConnection()
-			{
-				ConnectionString = strCon.ConnectionString
-			};
+			//SqlConnection connection = new SqlConnection()
+			//{
+			//	ConnectionString = strCon.ConnectionString
+			//};
 
-			connection.StateChange += (s, e) => {
-				Console.WriteLine($@"{nameof(connection)} в состоянии:" +
-					$" {(s as SqlConnection).State}");
-			};
+			//connection.StateChange += (s, e) =>
+			//{
+			//	Console.WriteLine($@"{nameof(connection)} в состоянии:" +
+			//		$" {(s as SqlConnection).State}");
+			//};
 
-			try
-			{
-				await connection.OpenAsync();
-			}
-			catch (Exception e)
-			{
-				Post.PostErrorMessage(e.Message);
-			}
-			finally
-			{
-				connection.Close();
-			}
+			//try
+			//{
+			//	await connection.OpenAsync();
+			//}
+			//catch (Exception e)
+			//{
+			//	Post.PostErrorMessage(e.Message);
+			//}
+			//finally
+			//{
+			//	connection.Close();
+			//}
 		}
+	}
 }

@@ -69,14 +69,15 @@
         <Button
                 x:Name="LoadClientsXMLBtn"
                 Content="Загрузить данные XML" 
-                Width="150"
+                Width="NaN"
                 Grid.Row="1"
                 Grid.Column="0"
-                Margin="0,100,0,0"
+                Margin="269,100,269,0"
                 VerticalAlignment="Top"
+                Grid.ColumnSpan="2"
             />
 
-        <Button
+        <!--<Button
                 x:Name="LoadClientsDBBtn"
                 Content="Загрузить данные БД" 
                 Width="150"
@@ -84,17 +85,18 @@
                 Grid.Column="1"
                 Margin="0,0,0,40"
                 VerticalAlignment="Bottom"
-            />
+            />-->
 
         <Button
                 x:Name="ContinueBtn"
                 Content="Продолжить работу" 
-                Width="150"
+                Width="185"
                 Grid.Row="1"
-                Margin="285,0,285,30"
+                Margin="269,0,269,55"
                 VerticalAlignment="Bottom"
+                Grid.ColumnSpan="2"
                 Click="ContinueBtn_Click"
-                Visibility="Hidden" Grid.ColumnSpan="2"
+                Visibility="Hidden"
             />
 
     </Grid>
