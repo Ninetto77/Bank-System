@@ -1,5 +1,6 @@
 ﻿using BankLogic_Library.Authorization;
 using BankLogic_Library.workers;
+using Lesson10;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -27,12 +28,10 @@ namespace BankLogic_Library.DB
 
 		static WorkerAuthorization()
 		{
-			//idUser = 2;
 		}
 
 		public WorkerAuthorization(string login, string password, WorkerType worker)
 		{
-			//this.id = (idUser++).ToString();
 			this.login = login;
 			this.password = password;
 			this.workerType = worker;
@@ -57,6 +56,9 @@ namespace BankLogic_Library.DB
 		public async void RegisterInSystem()
 		{
 			OpenSQLConnection();
+			Task<bool> task =  IsUserExists();
+			await task;
+			if (task.Result == true) return;
 			await RegisterWorker();
 		}
 
@@ -88,6 +90,53 @@ namespace BankLogic_Library.DB
 		}
 
 		/// <summary>
+		/// Существует ли пользователь в бд
+		/// </summary>
+		/// <returns>Пользователя нет в бд</returns>
+		private async Task<bool> IsUserExists()
+		{
+			try
+			{
+				await connection.OpenAsync();
+
+				DataTable table = new DataTable();
+				SqlDataAdapter adapter = new SqlDataAdapter();
+
+
+				var sql = "SELECT * FROM [Users] WHERE [Login]=@login";
+
+				using (SqlCommand command = new SqlCommand(sql, connection))
+				{
+					command.Parameters.Add("@login", SqlDbType.VarChar).Value = login;
+					command.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+					command.Parameters.Add("@workerType", SqlDbType.VarChar).Value = workerType.ToString();
+
+					adapter.SelectCommand = command;
+					adapter.Fill(table);
+
+					if (table.Rows.Count > 0)
+					{
+						MessageBox.Show("Такой пользователь уже есть! Введите другой логин");
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine($"{e.Message}");
+			}
+			finally
+			{
+				connection.Close();
+			}
+			return false;
+		}
+
+		/// <summary>
 		/// Найти пользователя в бд
 		/// </summary>
 		/// <returns></returns>
@@ -102,7 +151,7 @@ namespace BankLogic_Library.DB
 				SqlDataAdapter adapter = new SqlDataAdapter();
 
 
-				var sql = "SELECT * FROM [Users] WHERE 'Login'=@login  AND 'Password'=@password AND 'WorkerType' = @workerType";
+				var sql = "SELECT * FROM [Users] WHERE [Login]=@login  AND [Password]=@password AND [WorkerType] = @workerType";
 
 				using ( SqlCommand command = new SqlCommand(sql, connection))
 				{
@@ -115,22 +164,11 @@ namespace BankLogic_Library.DB
 
 					if (table.Rows.Count > 0)
 					{
-						MessageBox.Show("yes");
+						MessageBox.Show("Вы вошли в систему!");
 					}
 					else
-						MessageBox.Show("no");
-
-					//command.Parameters.Add(new SqlParameter("login", login));
-					//command.Parameters.Add(new SqlParameter("password", password));
-					//command.Parameters.Add(new SqlParameter("workerType", workerType.ToString()));
-
-					//command.ExecuteNonQuery();
+						MessageBox.Show("Такого пользователя нет");
 				}
-
-				//SqlDataReader reader = ;
-
-
-				//SqlCommand sqlCommand = connection.CreateCommand();
 			}
 			catch (Exception e)
 			{
@@ -153,21 +191,18 @@ namespace BankLogic_Library.DB
 			{
 				await connection.OpenAsync();
 
-				var sql = "INSERT INTO Users([Id], [Login], [Password], [WorkerType])" +
-					" VALUES(@id, @Login, @Password, @WorkerType)";
+				var sql = "INSERT INTO Users( [Login], [Password], [WorkerType])" +
+					" VALUES( @Login, @Password, @WorkerType)";
 
 				using (var command = new SqlCommand(sql, connection))
 				{
-					command.Parameters.Add(new SqlParameter("id", id));
-					command.Parameters.Add(new SqlParameter("Login", login));
-					command.Parameters.Add(new SqlParameter("Password", password));
-					command.Parameters.Add(new SqlParameter("WorkerType", workerType.ToString()));
+					command.Parameters.Add("@Login", SqlDbType.VarChar).Value = login;
+					command.Parameters.Add("@Password", SqlDbType.VarChar).Value  =password;
+					command.Parameters.Add("@WorkerType", SqlDbType.VarChar).Value  =workerType.ToString();
 
-					command.ExecuteNonQuery();
+					if (command.ExecuteNonQuery() == 1) Post.PostMessage("Вы успешно зарегистрировались!\nВойдите в свой аккаунт");
+					else Post.PostErrorMessage("Аккаунт не был создан");
 				}
-				
-
-				//SqlCommand sqlCommand = connection.CreateCommand();
 			}
 			catch (Exception e)
 			{

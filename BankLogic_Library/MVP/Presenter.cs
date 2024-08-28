@@ -538,7 +538,9 @@ namespace Lesson10.MVP
         #region Авторизация клиента
         public void EnterToSystem()
         {
-            WorkerType type;
+            if (!IsEmptyFields()) return;
+
+			WorkerType type;
             type = viewAuth.isManager == true ? type = WorkerType.manager : type = WorkerType.consultant;
 
 			WorkerAuthorization auth = new WorkerAuthorization(viewAuth.Login, viewAuth.Password, type);
@@ -546,12 +548,25 @@ namespace Lesson10.MVP
         }
 		public void RegistrateInSystem()
 		{
+			if (!IsEmptyFields()) return;
+
 			WorkerType type;
 			type = viewAuth.isManager == true ? type = WorkerType.manager : type = WorkerType.consultant;
 
 			WorkerAuthorization auth = new WorkerAuthorization(viewAuth.Login, viewAuth.Password, type);
 			auth.RegisterInSystem();
 		}
+
+        private bool IsEmptyFields()
+        {
+            if (viewAuth.Login == "" && viewAuth.Password == "")
+            {
+                Post.PostErrorMessage("Введите поля!");
+                return false;
+            }
+            return true;
+
+        }
 		#endregion
 
 		#region Работа с клиентом
