@@ -19,8 +19,6 @@ namespace BankLogic_Library.DB
 		private string password;
 		private WorkerType workerType;
 
-
-
 		private SqlConnection connection;
 		UsersContext usersdb;
 
