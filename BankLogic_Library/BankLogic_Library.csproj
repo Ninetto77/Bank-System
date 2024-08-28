@@ -56,13 +56,11 @@
   <ItemGroup>
     <Compile Include="activityLog\ActivityJournal.cs" />
     <Compile Include="activityLog\ActivityLog.cs" />
-    <Compile Include="Authorization\IAthorization.cs" />
+    <Compile Include="authorization\IAthorization.cs" />
     <Compile Include="bank\BankA.cs" />
     <Compile Include="clients\Client.cs" />
     <Compile Include="clients\Department.cs" />
-    <Compile Include="Authorization\User.cs" />
-    <Compile Include="DB\UsersContext.cs" />
-    <Compile Include="DB\WorkerAuthorization.cs" />
+    <Compile Include="authorization\WorkerAuthorization.cs" />
     <Compile Include="MVP\IViewAuthWindow.cs" />
     <Compile Include="repository\DBRepository.cs" />
     <Compile Include="repository\Repository.cs" />
