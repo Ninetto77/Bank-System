@@ -1,13 +1,18 @@
-﻿using Lesson10;
+﻿using BankLogic_Library.DB;
+using Lesson10;
 using Lesson10.repository;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace BankLogic_Library.repository
 {
 	public class DBRepository : Repository
 	{
+		private ClientContex db;
+
 		public DBRepository(int countOfDepartments, int countOfClients) : base(countOfDepartments, countOfClients)
 		{
+			db = new ClientContex();
 		}
 		public override void CreateClients(int countOfClients)
 		{
@@ -17,42 +22,19 @@ namespace BankLogic_Library.repository
 
 		public override void SaveClientContext()
 		{
+			db.SaveChanges();
 		}
 
 		public override async Task GetClientContextAsync()
 		{
-			//SqlConnectionStringBuilder strCon = new SqlConnectionStringBuilder()
-			//{
-			//	DataSource = @"(localdb)\MSS123QLLocalDB",
-			//	InitialCatalog = "MSSQLMyUsersDb",
-			//	IntegratedSecurity = true,
-			//	// UserID = "Admin", Password = "qwerty",
-			//	Pooling = false
-			//};
+			ClientContex db = new ClientContex();
+			var clients = db.Clients;
 
-			//SqlConnection connection = new SqlConnection()
-			//{
-			//	ConnectionString = strCon.ConnectionString
-			//};
-
-			//connection.StateChange += (s, e) =>
-			//{
-			//	Console.WriteLine($@"{nameof(connection)} в состоянии:" +
-			//		$" {(s as SqlConnection).State}");
-			//};
-
-			//try
-			//{
-			//	await connection.OpenAsync();
-			//}
-			//catch (Exception e)
-			//{
-			//	Post.PostErrorMessage(e.Message);
-			//}
-			//finally
-			//{
-			//	connection.Close();
-			//}
+			var clients1 = new ObservableCollection<Client>(clients);
+			if (Clients == null)
+			{
+				Post.PostMessage("Нет клиентов");
+			}
 		}
 	}
 }

@@ -1,9 +1,7 @@
 ﻿using BankLogic_Library.DB;
-using Lesson10.utills;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Windows.Navigation;
 
 namespace Lesson10.repository
 {
