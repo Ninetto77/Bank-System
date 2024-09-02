@@ -1,6 +1,8 @@
 ﻿using BankLogic_Library.Authorization;
+using BankLogic_Library.repository;
 using BankLogic_Library.workers;
 using Lesson10;
+using Lesson10.repository;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -11,6 +13,9 @@ namespace BankLogic_Library.DB
 {
 	public class WorkerAuthorization: IAthorization
 	{
+		public bool IsSuccess { get; set; }
+		public bool IsManager { get; set; }
+
 		private string id;
 		private string login;
 		private string password;
@@ -41,13 +46,13 @@ namespace BankLogic_Library.DB
 
 		#endregion
 
-		public async void EnterToSystem()
+		public async Task EnterToSystem()
 		{
 			OpenSQLConnection();
 			await LoginWorker();
 		}
 
-		public async void RegisterInSystem()
+		public async Task RegisterInSystem()
 		{
 			OpenSQLConnection();
 			Task<bool> task =  IsUserExists();
@@ -64,7 +69,7 @@ namespace BankLogic_Library.DB
 			SqlConnectionStringBuilder strCon = new SqlConnectionStringBuilder()
 			{
 				DataSource = @"(localdb)\MSSQLLocalDB",
-				InitialCatalog = "MSSQLMyUsersDb",
+				InitialCatalog = "MSSQLMyUserDb",
 				IntegratedSecurity = true,
 				// UserID = "Admin", Password = "qwerty",
 				Pooling = false
@@ -144,7 +149,6 @@ namespace BankLogic_Library.DB
 				DataTable table = new DataTable();
 				SqlDataAdapter adapter = new SqlDataAdapter();
 
-
 				var sql = "SELECT * FROM [Users] WHERE [Login]=@login  AND [Password]=@password AND [WorkerType] = @workerType";
 
 				using ( SqlCommand command = new SqlCommand(sql, connection))
@@ -158,7 +162,15 @@ namespace BankLogic_Library.DB
 
 					if (table.Rows.Count > 0)
 					{
-						MessageBox.Show("Вы вошли в систему!");
+						using(SqlDataReader reader = command.ExecuteReader())
+						{
+							while (reader.Read())
+							{
+								var manager = reader["WorkerType"].ToString();
+								IsManager = manager == "manager" ? true : false;
+							}
+							IsSuccess = true;
+						}
 					}
 					else
 						MessageBox.Show("Такого пользователя нет");
@@ -196,6 +208,9 @@ namespace BankLogic_Library.DB
 
 					if (command.ExecuteNonQuery() == 1) Post.PostMessage("Вы успешно зарегистрировались!\nВойдите в свой аккаунт");
 					else Post.PostErrorMessage("Аккаунт не был создан");
+
+					DBRepository repository = new DBRepository(3, 1000000);
+
 				}
 			}
 			catch (Exception e)

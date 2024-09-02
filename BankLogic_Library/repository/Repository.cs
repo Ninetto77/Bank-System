@@ -9,10 +9,7 @@ namespace Lesson10.repository
     {
         static Random r;
         public ObservableCollection<Department> Departments { get; set; }
-        public ObservableCollection<Client> Clients { get; set; }
-
-        ClientContex db;
-
+        public ObservableCollection<Clients> Clients { get; set; }
 
         static Repository()
         {
@@ -22,22 +19,22 @@ namespace Lesson10.repository
         public Repository(int countOfDepartments, int countOfClients)
         {
             Departments = new ObservableCollection<Department>();
-            Clients = new ObservableCollection<Client>();
+            Clients = new ObservableCollection<Clients>();
 
             for (int i = 0; i < countOfDepartments; i++)
             {
                 Departments.Add(new Department($"Department_{i + 1}", i + 1));
             }
 
-            //CreateClients(countOfClients);
+           // CreateClients(countOfClients);
 		}
 
         public virtual void CreateClients(int countOfClients)  
         {
-			for (int i = 0; i < 1000000; i++)
+			for (int i = 0; i < 100; i++)
 			{
 
-				Clients.Add(new Client(
+				Clients.Add(new Clients(
 					$"{(r.Next(Departments.Count + 1))}",
 					$"Surname_{i + 1}",
 					$"Name_{i + 1}",

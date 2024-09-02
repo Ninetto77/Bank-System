@@ -6,9 +6,8 @@ using System.Windows;
 using System.Windows.Controls;
 using BankAccount_Library.account;
 using BankAccount_Library.deposit;
-using System.Threading.Tasks;
-using System.Threading;
-//using Mysqlx.Crud;
+using BankLogic_Library.DB;
+
 
 namespace Lesson10
 {
@@ -23,17 +22,17 @@ namespace Lesson10
         public string SelectedItem_CB { get => ItemsComboBox.SelectedItem.ToString(); }
         public int SelectedItemIndex_CM { get => ItemsComboBox.SelectedIndex; }
         public string ChangedClientData_TB { get => EditTxtBox.Text; }
-        public IEnumerable<Client> ClientData_IV { get => IvWorkers.ItemsSource as IEnumerable<Client>; set => IvWorkers.ItemsSource = value; }
-        public Client SelectedClient_IV { get => IvWorkers.SelectedItem as Client; }
+        public IEnumerable<Clients> ClientData_IV { get => IvWorkers.ItemsSource as IEnumerable<Clients>; set => IvWorkers.ItemsSource = value; }
+        public Clients SelectedClient_IV { get => IvWorkers.SelectedItem as Clients; }
 
 
         /// Вкладка счета
         public Department SelectedDepartmentName1_CB { get => ItemsDepartamentComboBox1.SelectedItem as Department; }
-        public Client SelectedClient1_IV { get => IvWorkers1.SelectedItem as Client; }
+        public Clients SelectedClient1_IV { get => IvWorkers1.SelectedItem as Clients; }
         public ICapital<BankAccount> SelectedAccount_IV { get => IvAccounts1.SelectedItem as ICapital<BankAccount>; }
         public ICapital<BankAccount> SecondSelectedAccount_CB { get => ItemsAccountComboBox1.SelectedItem as ICapital<BankAccount>; }
         public string Rubles_TB { get => RubleTxtBox1.Text; }
-        public IEnumerable<Client> ClientData1_IV { get => IvWorkers1.ItemsSource as IEnumerable<Client>; set => IvWorkers1.ItemsSource = value; }
+        public IEnumerable<Clients> ClientData1_IV { get => IvWorkers1.ItemsSource as IEnumerable<Clients>; set => IvWorkers1.ItemsSource = value; }
         public IEnumerable<ICapital<BankAccount>> AccountsData_IV { get => IvAccounts1.ItemsSource as IEnumerable<ICapital<BankAccount>>; set => IvAccounts1.ItemsSource = value; }
         public IEnumerable<ICapital<BankAccount>> SecondAccountData_CB { get => ItemsAccountComboBox1.ItemsSource as IEnumerable<ICapital<BankAccount>>; set => ItemsAccountComboBox1.ItemsSource = value; }
 
@@ -45,12 +44,12 @@ namespace Lesson10
 
         // вкладка переводы
         public Department SelectedDepartmentName3_CB { get => ItemsDepartamentComboBox3.SelectedItem as Department; }
-        public Client SelectedClient3_IV { get => IvWorkers1.SelectedItem as Client; }
+        public Clients SelectedClient3_IV { get => IvWorkers1.SelectedItem as Clients; }
         public ICapital<BankAccount> SelectedAccount3_IV { get => IvAccounts1.SelectedItem as ICapital<BankAccount>; }
 
 
         public Department SecondSelectedDepartmentName3_CB { get => ItemsDepartament2ComboBox3.SelectedItem as Department; }
-        public Client SecondSelectedClient3_IV { get => ItemsClientComboBox3.SelectedItem as Client; }
+        public Clients SecondSelectedClient3_IV { get => ItemsClientComboBox3.SelectedItem as Clients; }
         public ICapital<BankAccount> SecondSelectedAccount3_CB { get => ItemsAccountComboBox3.SelectedItem as ICapital<BankAccount>; }
         public string Rubles3_TB { get => RubleTxtBox3.Text; }
         #endregion
@@ -222,23 +221,23 @@ namespace Lesson10
 
         #region TODO - можно ли изменить? p.worker.clients.Where(FindWorkers2)
 
-        private bool FindWorkers(Client client)
+        private bool FindWorkers(Clients client)
         {
             return int.Parse(client.DepartametId) == SelectedDepartmentName_CB.DepartmentId;
         }
-        private bool FindWorkers1(Client client)
+        private bool FindWorkers1(Clients client)
         {
             return int.Parse(client.DepartametId) == SelectedDepartmentName1_CB.DepartmentId;
         }
-        private bool FindWorkers2(Client client)
+        private bool FindWorkers2(Clients client)
         {
             return int.Parse(client.DepartametId) == SelectedDepartmentName2_CB.DepartmentId;
         }
-        private bool FindWorkers3(Client client)
+        private bool FindWorkers3(Clients client)
         {
             return int.Parse(client.DepartametId) == SelectedDepartmentName3_CB.DepartmentId;
         }
-        private bool FindSecondWorkers3(Client client)
+        private bool FindSecondWorkers3(Clients client)
         {
             return int.Parse(client.DepartametId) == SecondSelectedDepartmentName3_CB.DepartmentId;
         }

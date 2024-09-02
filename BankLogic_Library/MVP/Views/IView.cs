@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using BankAccount_Library.account;
 using BankAccount_Library.deposit;
+using BankLogic_Library.DB;
+
 
 namespace Lesson10.MVP
 {
@@ -11,13 +13,13 @@ namespace Lesson10.MVP
         string SelectedItem_CB { get;  }
         int SelectedItemIndex_CM { get;  }
         string ChangedClientData_TB { get;  }
-        IEnumerable<Client> ClientData_IV { get; set; }
-        Client SelectedClient_IV { get; }
+        IEnumerable<Clients> ClientData_IV { get; set; }
+        Clients SelectedClient_IV { get; }
 
         /// Вкладка счета
         Department SelectedDepartmentName1_CB { get; }
-        IEnumerable<Client> ClientData1_IV { get; set; }
-        Client SelectedClient1_IV { get; }
+        IEnumerable<Clients> ClientData1_IV { get; set; }
+        Clients SelectedClient1_IV { get; }
         IEnumerable<ICapital<BankAccount>> AccountsData_IV { get; set; }
         ICapital<BankAccount> SelectedAccount_IV { get; }
         IEnumerable<ICapital<BankAccount>> SecondAccountData_CB { get; set; }
@@ -31,11 +33,11 @@ namespace Lesson10.MVP
 
         // вкладка переводы
         Department SelectedDepartmentName3_CB{ get; }
-        Client SelectedClient3_IV{ get; }
+        Clients SelectedClient3_IV{ get; }
         ICapital<BankAccount> SelectedAccount3_IV{ get; }
 
         Department SecondSelectedDepartmentName3_CB{ get; }
-        Client SecondSelectedClient3_IV{ get; }
+        Clients SecondSelectedClient3_IV{ get; }
         ICapital<BankAccount> SecondSelectedAccount3_CB { get; }
         string Rubles3_TB { get; }
 

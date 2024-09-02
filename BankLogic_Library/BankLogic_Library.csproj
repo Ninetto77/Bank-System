@@ -44,6 +44,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -58,16 +60,36 @@
     <Compile Include="activityLog\ActivityLog.cs" />
     <Compile Include="authorization\IAthorization.cs" />
     <Compile Include="bank\BankA.cs" />
-    <Compile Include="clients\Client.cs" />
     <Compile Include="clients\Department.cs" />
     <Compile Include="authorization\WorkerAuthorization.cs" />
-    <Compile Include="MVP\IViewAuthWindow.cs" />
+    <Compile Include="DB\Clients.cs">
+      <DependentUpon>ClientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ClientsModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClientsModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ClientsModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ClientsModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClientsModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Presenters\AuthPresenter.cs" />
+    <Compile Include="MVP\Views\IViewAuthWindow.cs" />
+    <Compile Include="MVP\Presenters\LoadPresenter.cs" />
+    <Compile Include="MVP\Views\IViewLoad.cs" />
     <Compile Include="repository\DBRepository.cs" />
     <Compile Include="repository\Repository.cs" />
     <Compile Include="DB\ClientContex.cs" />
     <Compile Include="MVP\IModel.cs" />
-    <Compile Include="MVP\IView.cs" />
-    <Compile Include="MVP\IViewAddPage.cs" />
+    <Compile Include="MVP\Views\IView.cs" />
+    <Compile Include="MVP\Views\IViewAddPage.cs" />
     <Compile Include="MVP\Presenter.cs" />
     <Compile Include="observer\IObserver.cs" />
     <Compile Include="observer\ISubject.cs" />
@@ -92,9 +114,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="DB\ClientsModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ClientsModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DB\ClientsModel.edmx.diagram">
+      <DependentUpon>ClientsModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DB\ClientsModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ClientsModel.Context.cs</LastGenOutput>
+      <DependentUpon>ClientsModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="DB\ClientsModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ClientsModel.edmx</DependentUpon>
+      <LastGenOutput>ClientsModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -18,7 +18,7 @@ namespace Lesson10.MVP
         public ActivityJournal journal;
         public Worker worker;
         public ObservableCollection<Department> Departments { get; set; }
-        public ObservableCollection<Client> Clients { get; set; }
+        public ObservableCollection<Clients> Clients { get; set; }
         public ObservableCollection<ICapital<BankAccount>> Accounts { get; set; }
         public List<string> Items { get; set; }
 
@@ -103,7 +103,7 @@ namespace Lesson10.MVP
 
         private void CreateCollections()
         {
-            Clients = new ObservableCollection<Client>();
+            Clients = new ObservableCollection<Clients>();
             Departments = new ObservableCollection<Department>();
         }
 
@@ -186,7 +186,7 @@ namespace Lesson10.MVP
         /// </summary>
         public void EditClient()
         {
-            Client client = view.SelectedClient_IV;
+            Clients client = view.SelectedClient_IV;
             if (client == null)
             {
                 Post.PostErrorMessage($"Выберите чьи данные вы хотите изменить!");
@@ -574,7 +574,7 @@ namespace Lesson10.MVP
 		/// окно на потверждение изменения клиента
 		/// </summary>
 		/// <param name="client"></param>
-		private void AskForEditClient(Client client)
+		private void AskForEditClient(Clients client)
         {
             MessageBoxResult rezult = MessageBox.Show($"Вы уверены, что хотите отредактировать у" +
                 $" {client.Name} изменить {view.SelectedItem_CB} на {view.ChangedClientData_TB}?",
@@ -589,7 +589,7 @@ namespace Lesson10.MVP
         /// Изменение клиента
         /// </summary>
         /// <param name="client"></param>
-        private void EditClient(Client client)
+        private void EditClient(Clients client)
         {
             int index = view.SelectedItemIndex_CM;
             string Name = client.Name;
@@ -617,7 +617,7 @@ namespace Lesson10.MVP
         #endregion
 
         #region Работа с банком
-        public void FindClientAccounts(Client client)
+        public void FindClientAccounts(Clients client)
         {
             if (client == null) return;
             List<ICapital<BankAccount>> list = bank.FindClientAccounts(client);
@@ -626,7 +626,7 @@ namespace Lesson10.MVP
             view.AccountsData_IV = Accounts;
             view.SecondAccountData_CB = Accounts;
         }
-        public IEnumerable<ICapital<BankAccount>> GetClientAccounts(Client client)
+        public IEnumerable<ICapital<BankAccount>> GetClientAccounts(Clients client)
         {
             if (client == null) return null;
 

@@ -3,6 +3,8 @@ using Lesson10;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Lesson10.repository;
+using BankLogic_Library.DB;
+
 
 namespace BankLogic_Library.repository
 {
@@ -27,10 +29,10 @@ namespace BankLogic_Library.repository
 
 		public override async Task GetClientContextAsync()
 		{
-			var task = XMALWork.DeserializeField<Client>(filePath);
+			var task = XMALWork.DeserializeField<Clients>(filePath);
 			await task;
 
-			Clients = task.Result as ObservableCollection<Client>;
+			Clients = task.Result as ObservableCollection<Clients>;
 
 			if (Clients == null)
 			{

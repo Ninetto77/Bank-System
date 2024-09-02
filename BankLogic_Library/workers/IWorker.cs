@@ -2,6 +2,8 @@
 using Lesson10.observer;
 using System;
 using System.Threading.Tasks;
+using BankLogic_Library.DB;
+
 
 namespace Lesson10
 {
@@ -10,7 +12,7 @@ namespace Lesson10
         /// <summary>
         /// Событие изменения данных о клиенте
         /// </summary>
-        event Action<Client, TypeOfAct> OnChangeClient;
+        event Action<Clients, TypeOfAct> OnChangeClient;
 
         /// <summary>
         /// Дожидается загрузки клиетов из файла 

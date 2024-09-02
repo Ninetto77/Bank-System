@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Windows;
+using BankLogic_Library.DB;
+
 
 namespace Lesson10
 {
@@ -34,7 +35,7 @@ namespace Lesson10
                         throw new Exception("Неккоректный ввод данных");
                 }
 
-                foreach (Client client in clients)
+                foreach (Clients client in clients)
                 {
                     if (client.Name == name)
                     {

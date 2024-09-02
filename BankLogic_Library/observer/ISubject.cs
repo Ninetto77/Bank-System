@@ -1,5 +1,7 @@
 ﻿using Lesson10.activityLog;
 using BankAccount_Library.account;
+using BankLogic_Library.DB;
+
 
 namespace Lesson10.observer
 {
@@ -9,6 +11,6 @@ namespace Lesson10.observer
 
         void Detach(IObserver observer);
 
-        void Notify(Client client, TypeOfAct type, BankAccount account = null);
+        void Notify(Clients client, TypeOfAct type, BankAccount account = null);
     }
 }

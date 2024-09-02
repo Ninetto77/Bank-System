@@ -1,0 +1,76 @@
+﻿using BankLogic_Library.DB;
+using BankLogic_Library.workers;
+using Lesson10;
+using System;
+using System.Threading.Tasks;
+
+namespace BankLogic_Library.MVP.Presenters
+{
+	public class AuthPresenter
+	{
+		public Action<Worker> OnEnterInSystem;
+		private IViewAuthWindow view;
+		public AuthPresenter(IViewAuthWindow view) 
+		{
+			this.view = view;
+		}
+
+		#region Авторизация клиента
+		/// <summary>
+		/// Войти в систему
+		/// </summary>
+		public async void EnterToSystem()
+		{
+			if (!IsEmptyFields()) return;
+
+			WorkerType type;
+			type = view.isManager == true ? type = WorkerType.manager : type = WorkerType.consultant;
+
+			WorkerAuthorization auth = new WorkerAuthorization(view.Login, view.Password, type);
+
+			var task = auth.EnterToSystem();
+			await task;
+
+			if (auth.IsSuccess)
+			{
+				if (view.isManager == true)
+					OnEnterInSystem?.Invoke(new Manager());
+				else
+					OnEnterInSystem?.Invoke(new Manager());
+			}
+		}
+
+		/// <summary>
+		/// Регистрация клиента
+		/// </summary>
+		/// <returns></returns>
+		public async Task RegistrateInSystem()
+		{
+			if (!IsEmptyFields()) return;
+
+			WorkerType type;
+			type = view.isManager == true ? type = WorkerType.manager : type = WorkerType.consultant;
+
+			WorkerAuthorization auth = new WorkerAuthorization(view.Login, view.Password, type);
+			
+			await auth.RegisterInSystem();
+		}
+
+		/// <summary>
+		/// Проверка на пустые поля
+		/// </summary>
+		/// <returns></returns>
+		/// <exception cref="NotImplementedException"></exception>
+		private bool IsEmptyFields()
+		{
+			if (view.Login == "" && view.Password == "")
+			{
+				Post.PostErrorMessage("Введите поля!");
+				return false;
+			}
+			return true;
+		}
+
+		#endregion
+	}
+}

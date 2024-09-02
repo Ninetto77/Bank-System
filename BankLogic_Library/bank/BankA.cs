@@ -8,6 +8,8 @@ using Lesson10.activityLog;
 using Lesson10.observer;
 using Lesson10.transaction;
 using Lesson10.utills;
+using BankLogic_Library.DB;
+
 
 using BankAccount_Library.account;
 using BankAccount_Library.deposit;
@@ -39,8 +41,8 @@ namespace Lesson10
         public IWorker Worker { get; private set; }
 
 
-        private Dictionary<ICapital<BankAccount>, Client> accountsDictionary;
-        public Dictionary<ICapital<BankAccount>, Client> AccountsDictionary
+        private Dictionary<ICapital<BankAccount>, Clients> accountsDictionary;
+        public Dictionary<ICapital<BankAccount>, Clients> AccountsDictionary
         {
             get { return accountsDictionary; }
             set
@@ -60,7 +62,7 @@ namespace Lesson10
             CreateActivityLogList();
             CreateDictionary();
         }
-        public BankA(string name, IWorker worker, ObservableCollection<Client> clients)
+        public BankA(string name, IWorker worker, ObservableCollection<Clients> clients)
         {
             Name = name;
             SetWorker(worker);
@@ -80,7 +82,7 @@ namespace Lesson10
         /// Создает для списка клиентов по одному счету
         /// </summary>
         /// <param name="clients"></param>
-        public void CreateAccountsForClients(ObservableCollection<Client> clients)
+        public void CreateAccountsForClients(ObservableCollection<Clients> clients)
         {
             if (clients == null)
             {
@@ -98,7 +100,7 @@ namespace Lesson10
         /// Создает для клиента счет
         /// </summary>
         /// <param name="client">Клиент, у которого создается счет</param>
-        public void CreateAccountForClient(Client client, CapitalEnum typeOfCapital)
+        public void CreateAccountForClient(Clients client, CapitalEnum typeOfCapital)
         {
             ICapital<BankAccount> account = null;
             if (typeOfCapital.Equals(CapitalEnum.accountWithCapitalization) == true)
@@ -114,7 +116,7 @@ namespace Lesson10
         /// Создает для клиента счет
         /// </summary>
         /// <param name="client">Клиент, у которого создается счет</param>
-        public void CreateAccountForClient(Client client, CapitalEnum typeOfCapital, Ruble ruble)
+        public void CreateAccountForClient(Clients client, CapitalEnum typeOfCapital, Ruble ruble)
         {
             ICapital<BankAccount> account = null;
             if (typeOfCapital.Equals(CapitalEnum.accountWithCapitalization) == true)
@@ -133,7 +135,7 @@ namespace Lesson10
         {
             if (AccountsDictionary == null)
             {
-                AccountsDictionary = new Dictionary<ICapital<BankAccount>, Client>();
+                AccountsDictionary = new Dictionary<ICapital<BankAccount>, Clients>();
             }
         }
 
@@ -162,7 +164,7 @@ namespace Lesson10
         /// </summary>
         /// <param name="account"></param>
         /// <param name="client"></param>
-        private void FinishCreationAccount(ICapital<BankAccount> account, Client client)
+        private void FinishCreationAccount(ICapital<BankAccount> account, Clients client)
         {
             DicribeOnEvent(account);
 
@@ -181,7 +183,7 @@ namespace Lesson10
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
-        public List<ICapital<BankAccount>> FindClientAccounts(Client client)
+        public List<ICapital<BankAccount>> FindClientAccounts(Clients client)
         {
             if (client == null)
                 return null;
@@ -206,7 +208,7 @@ namespace Lesson10
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
-        public Client FindClientByAccount(BankAccount account)
+        public Clients FindClientByAccount(BankAccount account)
         {
             if (account == null)
                 return null;
@@ -333,7 +335,7 @@ namespace Lesson10
         /// <param name="type"></param>
         private void AddToActivityLog(BankAccount account, TypeOfAct type)
         {
-            Client client = FindClientByAccount(account);
+            Clients client = FindClientByAccount(account);
 
             if (client == null)
             {
@@ -350,7 +352,7 @@ namespace Lesson10
         /// <param name="client"></param>
         /// <param name="account"></param>
         /// <param name="type"></param>
-        private void AddToActivityLog(Client client, BankAccount account, TypeOfAct type)
+        private void AddToActivityLog(Clients client, BankAccount account, TypeOfAct type)
         {
             Notify(client, type, account);
         }
@@ -361,7 +363,7 @@ namespace Lesson10
         /// <param name="client"></param>
         /// <param name="account"></param>
         /// <param name="type"></param>
-        private void AddToActivityLog(Client client, TypeOfAct type)
+        private void AddToActivityLog(Clients client, TypeOfAct type)
         {
             BankAccount account = null;
             Notify(client, type, account);
@@ -376,7 +378,7 @@ namespace Lesson10
         /// </summary>
         private void UpdateDictinary()
         {
-            Dictionary<ICapital<BankAccount>, Client> temp = AccountsDictionary;
+            Dictionary<ICapital<BankAccount>, Clients> temp = AccountsDictionary;
             AccountsDictionary = temp;
         }
 
@@ -409,7 +411,7 @@ namespace Lesson10
             observers.Remove(observer);
         }
 
-        public void Notify(Client client, TypeOfAct type, BankAccount account = null)
+        public void Notify(Clients client, TypeOfAct type, BankAccount account = null)
         {
             foreach (var obs in observers)
             {

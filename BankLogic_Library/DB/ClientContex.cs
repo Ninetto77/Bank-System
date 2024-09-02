@@ -7,6 +7,6 @@ namespace BankLogic_Library.DB
     {
         public ClientContex() : base("DbConnection") { }
 
-        public DbSet<Client> Clients { get; set; }
+        public DbSet<Clients> Clients { get; set; }
     }
 }

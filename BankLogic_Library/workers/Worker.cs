@@ -9,18 +9,20 @@ using BankAccount_Library.account;
 using System.Threading.Tasks;
 using Lesson10.repository;
 using BankLogic_Library.repository;
+using BankLogic_Library.DB;
+
 
 namespace Lesson10
 {
     public abstract class Worker : IWorker
     {
         #region Поля
-        public event Action<Client, TypeOfAct> OnChangeClient;
+        public event Action<Clients, TypeOfAct> OnChangeClient;
 
         public List<string> items;
         public ObservableCollection<Department> departmentsName;
 
-        public ObservableCollection<Client> clients;
+        public ObservableCollection<Clients> clients;
 
         public List<IObserver> observers = new List<IObserver>();
 
@@ -60,7 +62,7 @@ namespace Lesson10
         /// </summary>
         /// <param name="index">Позиция в базе данных</param>
         /// <returns></returns>
-        public Client this[int index]
+        public Clients this[int index]
         {
             get { return clients[index]; }
         }
@@ -69,11 +71,11 @@ namespace Lesson10
         /// </summary>
         /// <param name="surname">Фамилия клиента</param>
         /// <returns></returns>
-        public Client this[string surname]
+        public Clients this[string surname]
         {
             get 
             {
-                Client client = null;
+                Clients client = null;
                 foreach (var e in this.clients)
                 {
                     if (e.Surname == surname)
@@ -121,8 +123,9 @@ namespace Lesson10
             Repository repository = null;
             if (place == "XML")
                 repository = new XMLRepository(countOfDepartments, countOfClients);
-			if (place == "DB")
-				repository = new DBRepository(countOfDepartments, countOfClients);
+            else
+			    if (place == "DB")
+				    repository = new DBRepository(countOfDepartments, countOfClients);
 
 			await repository.GetClientContextAsync();
 
@@ -140,7 +143,7 @@ namespace Lesson10
             }
         }
 
-        private void OnClientChange(Client client, TypeOfAct act)
+        private void OnClientChange(Clients client, TypeOfAct act)
         {
             Post.PostMessage("Изменение клиента");
             Notify(client, act);
@@ -174,7 +177,7 @@ namespace Lesson10
         public virtual void ShowClientData()
         {
             Console.WriteLine($"Surname\tName\tMiddlename\tPhone\tPasportData");
-            foreach (Client client in clients)
+            foreach (Clients client in clients)
             {
                 Console.Write(
                     $"{client.Surname}\t" +
@@ -201,12 +204,12 @@ namespace Lesson10
         /// </summary>
         public virtual void SortClientsBySurname()
         {
-            List<Client> sortedList = clients.ToList();
+            List<Clients> sortedList = clients.ToList();
             sortedList.Sort();
 
             clients.Clear();
 
-            foreach (Client item in sortedList)
+            foreach (Clients item in sortedList)
             {
                 clients.Add(item);
             }
@@ -224,7 +227,7 @@ namespace Lesson10
             observers.Remove(observer);
         }
 
-        public void Notify(Client client, TypeOfAct type, BankAccount account = null)
+        public void Notify(Clients client, TypeOfAct type, BankAccount account = null)
         {
             foreach (var obs in observers)
             {

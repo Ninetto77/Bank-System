@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using Lesson10.observer;
 using BankAccount_Library.account;
+using BankLogic_Library.DB;
 
 
 namespace Lesson10.activityLog
@@ -15,7 +16,7 @@ namespace Lesson10.activityLog
             ActivityLogsList = new ObservableCollection<ActivityLog>();
         }
 
-        public void Update(Client client, TypeOfAct type, BankAccount account = null)
+        public void Update(Clients client, TypeOfAct type, BankAccount account = null)
         {
             string nameClient = client.Name;
             string nameAccount;

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using BankLogic_Library.DB;
+
 
 namespace Lesson10
 {
@@ -20,7 +22,7 @@ namespace Lesson10
                         throw new Exception("Неккоректный ввод данных");
                 }
 
-                foreach (Client client in clients)
+                foreach (Clients client in clients)
                 {
                     if (client.Name == name)
                     {
@@ -49,7 +51,7 @@ namespace Lesson10
                         throw new Exception("Неккоректный ввод данных");
                 }
 
-                foreach (Client client in clients)
+                foreach (Clients client in clients)
                 {
                     if (client.Name == name)
                     {
@@ -77,7 +79,7 @@ namespace Lesson10
                         throw new Exception("Неккоректный ввод данных");
                 }
 
-                foreach (Client client in clients)
+                foreach (Clients client in clients)
                 {
                     if (client.Name == name)
                     {
@@ -107,7 +109,7 @@ namespace Lesson10
                         throw new Exception("Неккоректный ввод данных");
                 }
 
-                foreach (Client client in clients)
+                foreach (Clients client in clients)
                 {
                     if (client.Name == name)
                     {
@@ -137,7 +139,7 @@ namespace Lesson10
                         throw new Exception("Неккоректный ввод данных");
                 }
 
-                foreach (Client client in clients)
+                foreach (Clients client in clients)
                 {
                     if (client.Name == name)
                     {
@@ -161,7 +163,7 @@ namespace Lesson10
                               string pasportData)
         {
             if (IsCorrectAllData(id, surname, name, middlename, phone, pasportData ))
-                clients.Add(new Client(
+                clients.Add(new Clients(
                     $"{id}",
                     $"{surname}",
                     $"{name}",
