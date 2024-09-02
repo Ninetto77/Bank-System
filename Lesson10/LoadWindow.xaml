@@ -72,9 +72,8 @@
                 Width="NaN"
                 Grid.Row="1"
                 Grid.Column="0"
-                Margin="269,100,269,0"
+                Margin="82,99,96,0"
                 VerticalAlignment="Top"
-                Grid.ColumnSpan="2"
             />
 
         <Button
@@ -83,8 +82,8 @@
                 Width="150"
                 Grid.Row="1"
                 Grid.Column="1"
-                Margin="0,0,0,40"
-                VerticalAlignment="Bottom"
+                Margin="105,99,105,0"
+                VerticalAlignment="Top"
             />
 
         <Button
