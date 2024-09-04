@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccount_Library", "Bank
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankLogic_Library", "BankLogic_Library\BankLogic_Library.csproj", "{273F084B-4F43-4E6F-9AC6-91ACE512AA8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankWPF", "BankWPF\BankWPF.csproj", "{81DF1041-C1C5-45F7-B32D-B68F3B6D8103}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{273F084B-4F43-4E6F-9AC6-91ACE512AA8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{273F084B-4F43-4E6F-9AC6-91ACE512AA8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{273F084B-4F43-4E6F-9AC6-91ACE512AA8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81DF1041-C1C5-45F7-B32D-B68F3B6D8103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81DF1041-C1C5-45F7-B32D-B68F3B6D8103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81DF1041-C1C5-45F7-B32D-B68F3B6D8103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81DF1041-C1C5-45F7-B32D-B68F3B6D8103}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
