@@ -401,14 +401,14 @@
                 Background="#05B790"
                 Foreground="#ffff"
                 FontSize="15"
-                Width="260"
+                Width="270"
                 Height="35"
                 materialDesign:ButtonAssist.CornerRadius="22"
                 />
 
                         <Button x:Name="AddWithoutCapitalBtn2" 
                 Content="Добавить счет без капитализацией"
-                Width="260"                
+                Width="270"                
                 Background="#05B790"
                 Foreground="#ffff"
                 FontSize="15"
@@ -423,7 +423,7 @@
                 Background="#05B790"
                 Foreground="#ffff"
                 FontSize="15"
-                Width="260"
+                Width="270"
                 Height="35"
                 materialDesign:ButtonAssist.CornerRadius="22"
                 />
