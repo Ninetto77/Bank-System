@@ -178,7 +178,7 @@ namespace BankLogic_Library.DB
 
 		override public string ToString()
 		{
-			return $"{Surname,10}{Name,10}{Middlename,10}{Phone,6}{PasportData,10}";
+			return $"{Surname,10}{Name,10}{Middlename,15}{Phone,12}{PasportData,12}";
 		}
 
 		public int CompareTo(Clients other)

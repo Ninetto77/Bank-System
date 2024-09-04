@@ -161,9 +161,10 @@ namespace Lesson10
             AddMoneyForYearBtn2.Click += (s, e) => p.AddMoneyForYear();
 
             TransferBetweenClientsCapitalBtn3.Click += (s, e) => p.TransferBetweenClientsCapital();
-        }
+			CloseBtn.Click += (s, e) => Application.Current.Shutdown();
+		}
 
-        private void InitSelectedChangedCombobox()
+		private void InitSelectedChangedCombobox()
         {
             ItemsDepartamentComboBox.SelectionChanged += (s, e) => IvWorkers.ItemsSource = p.worker.clients.Where(FindWorkers);
 

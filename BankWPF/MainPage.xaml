@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 
       mc:Ignorable="d" 
-      d:DesignHeight="480" d:DesignWidth="800"
+      d:DesignHeight="480" d:DesignWidth="1060"
       Title="MainPage" 
      Loaded="MainPage_Loaded"
         Background="Transparent"
@@ -36,12 +36,11 @@
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Width" Value="200" />
             <Setter Property="Margin" Value="0 5 0 0" />
-
         </Style>
 
     </Page.Resources>
 
-    
+
     <Grid Background="#07bf96">
         <Grid.RowDefinitions>
             <!--<RowDefinition Height="30"/>
@@ -64,7 +63,7 @@
                     Background="White"
                     SelectionChanged="TabControl_SelectionChanged"
                     >
-    
+
             <TabItem x:Name="TabItemClient"
                      Header="Клиент"
                      Height="48" 
@@ -81,7 +80,7 @@
                 FontWeight="Light"
                 Foreground="White"
                 Margin="0,18,0,0" 
-                                />  
+                                />
 
                         <!--Body-->
                         <TextBlock 
@@ -90,10 +89,14 @@
                             Margin="10"
                             />
 
-            <!--Style="{StaticResource MaterialDesignComboBox}"-->
                         <ComboBox 
             x:Name="ItemsDepartamentComboBox"
             Width="200"
+            Style="{StaticResource MaterialDesignComboBox}"
+            Padding="5 2 0 2"
+            Background="White"
+            FontSize="15"
+            FontWeight="Light"
             materialDesign:HintAssist.Hint="Выберете департамент"
             ItemsSource="{Binding Departments}"
             SelectedIndex="0" 
@@ -120,6 +123,12 @@
                         <ComboBox 
             x:Name="ItemsComboBox"
             Width="200"
+            Style="{StaticResource MaterialDesignComboBox}"
+            Padding="5 2 0 2"
+            Background="White"
+            FontSize="15"
+            FontWeight="Light"
+            materialDesign:HintAssist.Hint="Выберете пункт"
             />
 
                         <TextBlock x:Name="EditTxt"             
@@ -138,11 +147,11 @@
             materialDesign:TextFieldAssist.TextFieldCornerRadius="5"
             />
 
-                        <StackPanel Orientation="Horizontal" Margin="15">
-                        <Button x:Name="EditBtn" 
+                        <StackPanel Orientation="Horizontal" Margin="17">
+                            <Button x:Name="EditBtn" 
                 Content="Обновить" 
                 HorizontalAlignment="Left"
-                Margin=" 0 0 0 0"
+                Margin=" 5 0 0 0"
                 Background="#05B790"
                 Foreground="#ffff"
                 FontSize="15"
@@ -152,10 +161,10 @@
               />
 
 
-                        <Button x:Name="CompareBtn" 
+                            <Button x:Name="CompareBtn" 
                 Content="Сортировать"
                 HorizontalAlignment="Center"
-                Margin="10 0 10 0"
+                Margin="60 0 50 0"
                 Background="#05B790"
                 Foreground="#ffff"
                 FontSize="15"
@@ -164,7 +173,7 @@
                 materialDesign:ButtonAssist.CornerRadius="22"
                                 />
 
-                        <Button 
+                            <Button 
                 x:Name="AddBtn" 
                 Content="Добавить"
                 HorizontalAlignment="Right"
@@ -205,6 +214,13 @@
                         <ComboBox 
             Grid.Row="3" 
             x:Name="ItemsDepartamentComboBox1"
+             Style="{StaticResource MaterialDesignComboBox}"
+            Padding="5 2 0 2"
+            Background="White"
+            FontSize="15"
+            FontWeight="Light"
+            Width="200"
+            materialDesign:HintAssist.Hint="Выберете департамент"
              SelectedIndex="0" 
              >
 
@@ -231,6 +247,13 @@
 
                         <ComboBox 
             x:Name="ItemsAccountComboBox1"
+            Style="{StaticResource MaterialDesignComboBox}"
+            Padding="5 2 0 2"
+            Background="White"
+            FontSize="15"
+            FontWeight="Light"
+            Width="200"
+            materialDesign:HintAssist.Hint="Выберете счет"
                  >
 
                             <ComboBox.ItemTemplate>
@@ -333,6 +356,13 @@
             Grid.Row="3" 
             x:Name="ItemsDepartamentComboBox2"
              SelectedIndex="0" 
+            Style="{StaticResource MaterialDesignComboBox}"
+            Padding="5 2 0 2"
+            Background="White"
+            FontSize="15"
+            FontWeight="Light"
+            Width="200"
+            materialDesign:HintAssist.Hint="Выберете департамент"
             >
 
                             <ComboBox.ItemTemplate>
@@ -350,6 +380,7 @@
 
                         <TextBlock x:Name="RubleTxt2" 
             Text="3 - Напишите, сколько средств вы хотите положить при создании счета" 
+                                   TextWrapping="Wrap" Width="382"
                                    />
 
                         <TextBox 
@@ -419,7 +450,14 @@
 
                         <ComboBox 
             x:Name="ItemsDepartamentComboBox3"
-             SelectedIndex="0" 
+             SelectedIndex="0"
+            Style="{StaticResource MaterialDesignComboBox}"
+            Padding="5 2 0 2"
+            Background="White"
+            FontSize="15"
+            FontWeight="Light"
+            Width="200"
+            materialDesign:HintAssist.Hint="Выберете департамент"
              >
 
                             <ComboBox.ItemTemplate>
@@ -437,11 +475,19 @@
 
                         <TextBlock x:Name="DepartAndClientTxt3" 
             Text="3 - Выберете департамент второго клиента, самого клиента и счет, с которого вы хотите снять средства" 
+                                   TextWrapping="Wrap" Width="348"
                                    />
 
                         <ComboBox 
             x:Name="ItemsDepartament2ComboBox3"
              SelectedIndex="0" 
+            Style="{StaticResource MaterialDesignComboBox}"
+            Padding="5 2 0 2"
+            Background="White"
+            FontSize="15"
+            FontWeight="Light"
+            Width="200"
+            materialDesign:HintAssist.Hint="Выберете департамент"
             >
 
                             <ComboBox.ItemTemplate>
@@ -453,7 +499,15 @@
 
                         <ComboBox 
             x:Name="ItemsClientComboBox3"
-             SelectedIndex="0" 
+             SelectedIndex="0"
+                            Margin="0 10"
+             Style="{StaticResource MaterialDesignComboBox}"
+            Padding="5 2 0 2"
+            Background="White"
+            FontSize="15"
+            FontWeight="Light"
+            Width="200"
+            materialDesign:HintAssist.Hint="Выберете клиента"
             >
 
                             <ComboBox.ItemTemplate>
@@ -466,6 +520,13 @@
                         <ComboBox 
             x:Name="ItemsAccountComboBox3"
             SelectedIndex="0" 
+            Style="{StaticResource MaterialDesignComboBox}"
+            Padding="5 2 0 2"
+            Background="White"
+            FontSize="15"
+            FontWeight="Light"
+            Width="200"
+            materialDesign:HintAssist.Hint="Выберете аккаунт"
              >
 
                             <ComboBox.ItemTemplate>
@@ -526,12 +587,12 @@
             FontWeight="Bold" 
                             />
 
-                                  <!--Style="{StaticResource MaterialDesignCardsListBox}">-->
+                        <!--Style="{StaticResource MaterialDesignCardsListBox}">-->
                         <ListView x:Name ="IvActivityLog" Margin="8,10,10,10" 
                                   Grid.Column="1" Grid.RowSpan="11"
                                   Height="322"
                                   >
-                        <ListView.View>
+                            <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding ClientSurname}"/>
                                     <GridViewColumn Header="AccountName" DisplayMemberBinding="{Binding AccountName, TargetNullValue=-}"/>
@@ -552,11 +613,35 @@
         <!--<Frame x:Name="AddFrame" Height="450" Width="800" MinHeight="515" MinWidth="800" Grid.ColumnSpan="2" Margin="0,-18,0,-18" Grid.RowSpan="10" Navigated="AddFrame_Navigated" />-->
         <!--SelectedItem="{Binding SelectedDepartment}"-->
 
+        <!--Close Icon-->
+        <StackPanel Grid.Column="1">
+            <materialDesign:PackIcon Kind="Close"
+                          Width="20"
+                          Height="20"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Right"
+                          Opacity="0.3"
+                          Margin="0 5 5 0"
+                          />
+            <Button
+                          x:Name="CloseBtn"
+                          Width="20"
+                          Height="20"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Right"
+                          Margin="0 -20 5 0"
+                                    Style="{StaticResource MaterialDesignFlatButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="22" />
+        </StackPanel>
+
+        <!--Style="{StaticResource MaterialDesignChoiceChipAccentListBox}"-->
         <ListView x:Name ="IvWorkers"
                   ItemsSource="{Binding Clients}"
-                  Margin="8,10,10,10"
+                  Margin="8,10,36,10"
                   Grid.Column="1"
-                  Grid.RowSpan="11" 
+                  materialDesign:ScrollBarAssist.ThumbCornerRadius="10"
+                  materialDesign:ListBoxItemAssist.CornerRadius="10"
+                  Background="#07bf96"
                   >
             <ListView.View>
                 <GridView>
@@ -569,7 +654,7 @@
             </ListView.View>
         </ListView>
 
-        <ListView x:Name ="IvWorkers1" Margin="8,10,205,30" Grid.Column="1" Grid.RowSpan="10">
+        <ListView x:Name ="IvWorkers1" Margin="10,10,288,10" Grid.Column="1" Width="202" Style="{StaticResource MaterialDesignChoiceChipListBox}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding Surname}"/>
@@ -578,8 +663,8 @@
             </ListView.View>
         </ListView>
 
-        <ListView x:Name ="IvAccounts1" Margin="200,10,10,30"
-                  Grid.Column="1" Grid.RowSpan="10" 
+        <ListView x:Name ="IvAccounts1" Margin="264,10,36,10"
+                  Grid.Column="1" Style="{StaticResource MaterialDesignNavigationListBox}"
                   DataContext="Presenter.Accounts">
             <ListView.View>
                 <GridView>

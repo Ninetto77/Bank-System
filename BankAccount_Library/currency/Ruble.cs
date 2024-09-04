@@ -61,8 +61,13 @@ namespace BankAccount_Library.currency
                 return true;
             return false;
         }
-        #endregion
-    }
+
+		public override string ToString()
+		{
+			return $"{Value}";
+		}
+		#endregion
+	}
 
 
 

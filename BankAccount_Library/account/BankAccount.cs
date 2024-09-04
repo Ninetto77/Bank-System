@@ -89,6 +89,13 @@ namespace BankAccount_Library.account
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-        #endregion
-    }
+		#endregion
+
+		#region
+		public override string ToString()
+		{
+            return $"{Name}, {AccountRuble}";
+		}
+		#endregion
+	}
 }

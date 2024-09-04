@@ -6,7 +6,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="AddPage"
     Background="Transparent"
         FontSize="18"
@@ -31,37 +31,44 @@
             <Setter Property="Height" Value="25" />
         </Style>
 
-        <Style TargetType="ComboBox">
-            <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="Width" Value="200" />
-            <Setter Property="Margin" Value="0 5 0 5" />
-        </Style>
-
     </Page.Resources>
     <Grid >
         <Frame x:Name="AddFrame" Height="450" Width="800" MinHeight="450" MinWidth="800" />
-        <StackPanel>
-            
-        <TextBlock HorizontalAlignment="Left" Margin="20,20,0,0" TextWrapping="Wrap" Text="Департамент" VerticalAlignment="Top"/>
-        
+        <StackPanel Background="#07bf96" Grid.ColumnSpan="2">
 
-        <ComboBox 
+            <!--Title-->
+            <TextBlock 
+                x:Name="MainTxt"
+                Text="Добавление клиента" 
+                FontSize="25"
+                FontWeight="Light"
+                Foreground="White"
+                Margin="20,18,0,0" 
+                                />
+
+            <TextBlock HorizontalAlignment="Left" Margin="20,20,0,0" TextWrapping="Wrap" Text="Департамент" VerticalAlignment="Top"/>
+
+
+            <ComboBox 
             x:Name="ItemsDepartamentComboBox"
-            Background="Black"
-            Grid.Row="1" 
+            Style="{StaticResource MaterialDesignComboBox}"
+            Background="White"
+            FontSize="15"
+            FontWeight="Light"
+            Padding="5 2 0 1"
+            materialDesign:HintAssist.Hint="Выберете департамент"
             HorizontalAlignment="Left" 
-            Margin="20,5,0,0" 
-            VerticalAlignment="Center"
-            Width="120" 
+            Margin="20,5,0,0"
+            Width="182" 
             SelectedIndex="0" 
             Loaded="AddPage_Loaded" >
 
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding DepartmentName}"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DepartmentName}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
             <TextBlock HorizontalAlignment="Left" Margin="20,5,0,0" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top"/>
 
@@ -142,23 +149,61 @@
             materialDesign:TextFieldAssist.TextFieldCornerRadius="5"
             Width="120" />
 
+            <StackPanel Orientation="Horizontal">
 
-            <Button
-            x:Name="AddButton"  
-            HorizontalAlignment="Left" 
-            Content = "Добавить "  
-            Margin="20,50,0,0" 
-            Grid.Row="6" 
-            VerticalAlignment="Top">
+                <Button
+                x:Name="AddButton"  
+                HorizontalAlignment="Left" 
+                Content = "Добавить "  
+                Margin="20,20,0,0" 
+                Grid.Row="6" 
+                VerticalAlignment="Top"
+                Background="#05B790"
+                Foreground="#ffff"
+                FontSize="15"
+                Width="110"
+                Height="35"
+                materialDesign:ButtonAssist.CornerRadius="22">
+                </Button>
 
-           </Button>
-        <Button 
-            x:Name="CancelButton"  
-            HorizontalAlignment="Right" 
-            Content = "Отмена"  
-            Margin="0,80,80,0" Grid.Row="7"
-            VerticalAlignment="Top"
-            />
+                <Button 
+                x:Name="CancelButton"  
+                HorizontalAlignment="Right" 
+                Content = "Отмена"  
+                Margin="40,20,0,0"
+                VerticalAlignment="Top"
+                Background="#05B790"
+                Foreground="#ffff"
+                FontSize="15"
+                Width="110"
+                Height="35"
+                materialDesign:ButtonAssist.CornerRadius="22"
+                />
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+            <!--Close Icon-->
+            <StackPanel Grid.Column="1">
+                <materialDesign:PackIcon Kind="Close"
+                         Width="20"
+                         Height="20"
+                         VerticalAlignment="Top"
+                         HorizontalAlignment="Right"
+                         Opacity="0.3"
+                         Margin="0 5 5 0"
+                         />
+                <Button
+                         x:Name="CloseBtn"
+                         Width="20"
+                         Height="20"
+                         VerticalAlignment="Top"
+                         HorizontalAlignment="Right"
+                         Margin="0 -20 5 0"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        materialDesign:ButtonAssist.CornerRadius="22" />
+            </StackPanel>
 
         </StackPanel>
 
@@ -166,7 +211,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-            
+
 
     </Grid>
 </Page>

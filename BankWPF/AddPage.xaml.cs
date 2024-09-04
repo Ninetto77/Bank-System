@@ -43,9 +43,10 @@ namespace Lesson10
         { 
             CancelButton.Click += (s, e) => GoMainPage();
             AddButton.Click += (s, e) => AddClient();
-        }
+			CloseBtn.Click += (s, e) => Application.Current.Shutdown();
+		}
 
-        private void AddClient()
+		private void AddClient()
         {
             p.AddClient(this);
             GoMainPage();
