@@ -1,5 +1,6 @@
 ﻿using BankLogic_Library.DB;
 using BankLogic_Library.workers;
+using BankLogic_Library.workers.workerFactory;
 using Lesson10;
 using System;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace BankLogic_Library.MVP.Presenters
 {
 	public class AuthPresenter
 	{
-		public Action<Worker> OnEnterInSystem;
+		public Action<IWorker> OnEnterInSystem;
 		private IViewAuthWindow view;
 		public AuthPresenter(IViewAuthWindow view) 
 		{
@@ -34,9 +35,9 @@ namespace BankLogic_Library.MVP.Presenters
 			if (auth.IsSuccess)
 			{
 				if (view.isManager == true)
-					OnEnterInSystem?.Invoke(new Manager());
+					OnEnterInSystem?.Invoke(WorkerFactory.GetWorker(WorkerType.manager));
 				else
-					OnEnterInSystem?.Invoke(new Manager());
+					OnEnterInSystem?.Invoke(WorkerFactory.GetWorker(WorkerType.consultant));
 			}
 		}
 

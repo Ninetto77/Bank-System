@@ -45,10 +45,10 @@ namespace Lesson10
 		/// Закрыть текущее окно, открыть окно загрузки
 		/// </summary>
 		/// <param name="worker"></param>
-		private void OpenLoadWindow(Worker worker)
+		private void OpenLoadWindow(IWorker worker)
 		{
 			this.Hide();
-			LoadWindow window = new LoadWindow(worker);
+			LoadWindow window = new LoadWindow(worker as Worker);
 			window.Show();
 		}
 

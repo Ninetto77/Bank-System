@@ -100,10 +100,12 @@
     <Compile Include="transaction\TransactionBank.cs" />
     <Compile Include="utills\Post.cs" />
     <Compile Include="utills\XMALWork.cs" />
-    <Compile Include="workers\Consultant.cs" />
+    <Compile Include="workers\workers\Consultant.cs" />
     <Compile Include="workers\IWorker.cs" />
-    <Compile Include="workers\Manager.cs" />
+    <Compile Include="workers\workers\Manager.cs" />
     <Compile Include="workers\Worker.cs" />
+    <Compile Include="workers\workerFactory\WorkerFactory.cs" />
+    <Compile Include="workers\workers\NullWorker.cs" />
     <Compile Include="workers\WorkerType.cs" />
   </ItemGroup>
   <ItemGroup>
