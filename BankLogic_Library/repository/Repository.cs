@@ -23,7 +23,7 @@ namespace Lesson10.repository
 
             for (int i = 0; i < countOfDepartments; i++)
             {
-                Departments.Add(new Department($"Department_{i + 1}", i + 1));
+                Departments.Add(new Department($"Департамент_{i + 1}", i + 1));
             }
 
            // CreateClients(countOfClients);
@@ -36,9 +36,9 @@ namespace Lesson10.repository
 
 				Clients.Add(new Clients(
 					$"{(r.Next(Departments.Count + 1))}",
-					$"Surname_{i + 1}",
-					$"Name_{i + 1}",
-					$"MiddleName_{i + 1}",
+					$"Фамилия_{i + 1}",
+					$"Имя_{i + 1}",
+					$"Отчество_{i + 1}",
 					"79999999999",
 					$"6666664444"
 					));

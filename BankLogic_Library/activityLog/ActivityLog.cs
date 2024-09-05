@@ -100,7 +100,7 @@ namespace Lesson10.activityLog
                     ActString = "Перевод другому клиенту";
                     break;
                 case TypeOfAct.changeClientData:
-                    ActString = "Изменение данных об клиенте";
+                    ActString = "Изменение данных о клиенте";
                     break;
                 case TypeOfAct.addClient:
                     ActString = "Добавление клиента";
@@ -124,8 +124,6 @@ namespace Lesson10.activityLog
         #endregion
 
         #endregion
-
-
 
     }
 
