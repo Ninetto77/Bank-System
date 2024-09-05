@@ -247,6 +247,7 @@
 
                         <ComboBox 
             x:Name="ItemsAccountComboBox1"
+             materialDesign:TextFieldAssist.HasClearButton="True"
             Style="{StaticResource MaterialDesignComboBox}"
             Padding="5 2 0 2"
             Background="White"
@@ -590,14 +591,25 @@
                         <!--Style="{StaticResource MaterialDesignCardsListBox}">-->
                         <ListView x:Name ="IvActivityLog" Margin="8,10,10,10" 
                                   Grid.Column="1" Grid.RowSpan="11"
-                                  Height="322"
+                                  Height="322" 
+                                  materialDesign:ListBoxItemAssist.ShowSelection="False" SelectionMode="Single"
                                   >
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Focusable" Value="false"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#06A07E"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding ClientSurname}"/>
-                                    <GridViewColumn Header="AccountName" DisplayMemberBinding="{Binding AccountName, TargetNullValue=-}"/>
-                                    <GridViewColumn Header="TypeOfChange" DisplayMemberBinding="{Binding ActString}"/>
-                                    <GridViewColumn Header="TimeOfActivity" DisplayMemberBinding="{Binding TimeOfAction}"/>
+                                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding ClientSurname}"/>
+                                    <GridViewColumn Header="Имя аккаунта" DisplayMemberBinding="{Binding AccountName, TargetNullValue=-}"/>
+                                    <GridViewColumn Header="Тип изменения" DisplayMemberBinding="{Binding ActString}"/>
+                                    <GridViewColumn Header="Время" DisplayMemberBinding="{Binding TimeOfAction}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -641,15 +653,28 @@
                   Grid.Column="1"
                   materialDesign:ScrollBarAssist.ThumbCornerRadius="10"
                   materialDesign:ListBoxItemAssist.CornerRadius="10"
+                  materialDesign:ListViewAssist.ListViewItemPadding="13"
                   Background="#07bf96"
                   >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#059373"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#06A07E"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding Surname}"/>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Middlename" DisplayMemberBinding="{Binding Middlename}"/>
-                    <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}"/>
-                    <GridViewColumn Header="PasportData" DisplayMemberBinding="{Binding PasportData}"/>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Surname}"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Middlename}"/>
+                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}"/>
+                    <GridViewColumn Header="Паспорт" DisplayMemberBinding="{Binding PasportData}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -657,19 +682,42 @@
         <ListView x:Name ="IvWorkers1" Margin="10,10,288,10" Grid.Column="1" Width="202" Style="{StaticResource MaterialDesignChoiceChipListBox}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding Surname}"/>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Surname}"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
         <ListView x:Name ="IvAccounts1" Margin="264,10,36,10"
-                  Grid.Column="1" Style="{StaticResource MaterialDesignNavigationListBox}"
-                  DataContext="Presenter.Accounts">
+                  Grid.Column="1"
+                  DataContext="Presenter.Accounts"
+                  materialDesign:ScrollBarAssist.ThumbCornerRadius="10"
+                  materialDesign:ListBoxItemAssist.CornerRadius="10"
+                  materialDesign:ListViewAssist.ListViewItemPadding="15"
+                  
+                  >
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#059373"/>
+                            </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#06A07E"/>
+                        </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
             <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="AccountName" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Score" DisplayMemberBinding="{Binding AccountRuble.Value}"/>
+                    <GridView>
+
+                    <GridViewColumn Header="Имя аккаунта" DisplayMemberBinding="{Binding Name}">
+
+                    </GridViewColumn>
+                    <GridViewColumn Header="Счет" DisplayMemberBinding="{Binding AccountRuble.Value}">
+
+                    </GridViewColumn>
+
                 </GridView>
             </ListView.View>
         </ListView>
