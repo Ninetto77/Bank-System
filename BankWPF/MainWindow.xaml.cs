@@ -1,5 +1,6 @@
 ﻿using Lesson10.MVP;
 using System.Windows;
+using System.Windows.Input;
 
 
 namespace Lesson10
@@ -55,5 +56,12 @@ namespace Lesson10
             return this.p;
         }
 
+		private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+			if (e.ChangedButton == MouseButton.Left)
+			{
+				this.DragMove();
+			}
+		}
     }
 }

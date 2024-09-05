@@ -3,6 +3,7 @@ using BankLogic_Library.MVP.Views;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 
 namespace Lesson10
@@ -47,27 +48,6 @@ namespace Lesson10
 		}
 
 		#region Инициализация
-		///// <summary>
-		///// начальное окно, спрашивающее, является ли пользователь менеджером или консультантом
-		///// </summary>
-		///// <returns></returns>
-		//private Worker FindOutWorker()
-		//{
-		//	MessageBoxResult result = MessageBox.Show(
-		//	"Вы менеджер?",
-		//	 "Консультант или менеджер",
-		//	 MessageBoxButton.YesNo,
-		//	 MessageBoxImage.Information
-		//);
-
-		//	if (result == MessageBoxResult.Yes)
-		//		worker = new Manager();
-		//	else
-		//		worker = new Consultate();
-
-		//	return worker;
-		//}
-
 		/// <summary>
 		/// Инициализация кнопок
 		/// </summary>
@@ -116,6 +96,12 @@ namespace Lesson10
 			this.Close();
 		}
 
-
+		private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			if (e.ChangedButton == MouseButton.Left)
+			{
+				this.DragMove();
+			}
+		}
 	}
 }

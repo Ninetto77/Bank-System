@@ -54,6 +54,8 @@ namespace BankLogic_Library.DB
 
 		public async Task RegisterInSystem()
 		{
+			Console.WriteLine("OpenSQLConnection()");
+
 			OpenSQLConnection();
 			Task<bool> task =  IsUserExists();
 			await task;

@@ -42,18 +42,6 @@
 
 
     <Grid Background="#07bf96">
-        <Grid.RowDefinitions>
-            <!--<RowDefinition Height="30"/>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="271*"/>-->
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

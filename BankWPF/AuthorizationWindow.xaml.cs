@@ -36,8 +36,19 @@ namespace Lesson10
 		private void InitButtons()
 		{
 			EnterBtn.Click += (s, e) => p.EnterToSystem();
-			RegisterBtn.Click += (s, e) => Task.Run(async () => await p.RegistrateInSystem());
+			Console.WriteLine("init RegisterBtn");
+			RegisterBtn.Click += (s, e) => RegistrateInSystem();
 			CloseBtn.Click += (s, e) => Application.Current.Shutdown();
+		}
+
+		/// <summary>
+		/// Регистрация пользователя
+		/// </summary>
+		private async void RegistrateInSystem()
+		{
+			if (! p.IsEmptyFields()) return;
+			var task = p.RegistrateInSystem();
+			await task;
 		}
 
 

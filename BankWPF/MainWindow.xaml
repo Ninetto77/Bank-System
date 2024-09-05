@@ -20,12 +20,12 @@
         ResizeMode="NoResize"
         FontSize="18"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        > <!--MaxHeight="480" MaxWidth="800"--> 
+        > <!--MaxHeight="480" MaxWidth="800"-->
 
-    
-    <Grid>
+
+    <Grid MouseDown="Border_MouseDown">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <!--<RowDefinition Height="30"/>
             <RowDefinition Height="45"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="45"/>
@@ -34,7 +34,7 @@
             <RowDefinition Height="45"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="271*"/>
+            <RowDefinition Height="271*"/>-->
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
